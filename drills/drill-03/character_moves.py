@@ -8,8 +8,8 @@ open_canvas()
 grass = load_image('grass.png')
 character = load_image('character.png')
 
-x=0
-y=90
+x = 0
+y = 90
 th = 0
 while(True):
     while(x < 800):
