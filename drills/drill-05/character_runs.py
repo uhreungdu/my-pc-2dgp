@@ -59,8 +59,8 @@ def move_first(count):
 
 
 
-
-for count in range(0, 10):
+count = 0
+while True:
     if (count < 9):
         move_to_spot(count)
         count = count + 1
