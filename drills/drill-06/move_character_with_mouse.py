@@ -66,6 +66,8 @@ while running:
         ch_y += 1
     if (ch_y > sv_y):
         ch_y -= 1
+    if (ch_x == sv_y and ch_y == ch_x):
+        dirat = 2
     delay(0.02)
 
 
