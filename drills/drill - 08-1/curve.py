@@ -1,7 +1,7 @@
 import turtle
 import random
 
-#drill 08 -1 완성
+#drill 08 -1 완성했습니다.
 def stop():
     turtle.bye()
 
