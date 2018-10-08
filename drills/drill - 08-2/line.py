@@ -22,8 +22,13 @@ def draw_character(p):
     if (direction == 1):
         character.clip_draw(frame * 100, 0, 100, 100, p[0], p[1])
 
-def check_point(p,s):
-    pass
+def check_point(p):
+    global direction
+
+    if (direction == 0):
+        character.clip_draw(100, 100, 100, 100, p[0], p[1])
+    if (direction == 1):
+        character.clip_draw(100, 0, 100, 100, p[0], p[1])
 
 
 
@@ -48,6 +53,10 @@ def draw_line(p1, p2,p3,p4):
     if (p1[0] < p2[0]):
         direction = 0
     if (p1[0] > p2[0]):
+        direction = 1
+    if (p2[0]< p3[0]):
+        direction = 0
+    if (p3[0]<p2[0]):
         direction = 1
     draw_character((x,y))
     if (temp > 100):
