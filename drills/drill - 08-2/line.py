@@ -9,7 +9,7 @@ character = load_image('animation_sheet.png')
 
 frame = 0
 size = 20
-points = [(random.randint(0, KPU_WIDTH), random.randint(0, 1024)) for
+points = [(random.randint(0 + 100, KPU_WIDTH - 100), random.randint(0 + 100, 1024 - 100)) for
         i in range(size)]
 n = 1
 
