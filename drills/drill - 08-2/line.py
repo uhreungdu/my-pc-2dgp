@@ -69,7 +69,7 @@ while True:
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
 
-
+    check_point(points[(n +1)%20])
     draw_line(points[n-1], points[n], points[(n +1)%20], points[(n+2)%20])
 
     update_canvas()
