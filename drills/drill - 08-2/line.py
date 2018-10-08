@@ -22,7 +22,8 @@ def draw_character(p):
     if (direction == 1):
         character.clip_draw(frame * 100, 0, 100, 100, p[0], p[1])
 
-
+def check_point(p,s):
+    pass
 
 
 
@@ -31,7 +32,7 @@ def draw_character(p):
 
 
 temp = 0
-def draw_line(p1, p2):
+def draw_line(p1, p2,p3,p4):
     global direction
     global temp
     global n
@@ -40,8 +41,10 @@ def draw_line(p1, p2):
     i = temp
 
     t = i/100
-    x = (1-t) * p1[0] + t*p2[0]
-    y = (1-t) * p1[1] + t*p2[1]
+    x = ((-t ** 3 + 2 * t ** 2 - t) * p1[0] + (3 * t ** 3 - 5 * t ** 2 + 2) * p2[0] + (
+            -3 * t ** 3 + 4 * t ** 2 + t) * p3[0] + (t ** 3 - t ** 2) * p4[0]) / 2
+    y = ((-t ** 3 + 2 * t ** 2 - t) * p1[1] + (3 * t ** 3 - 5 * t ** 2 + 2) * p2[1] + (
+            -3 * t ** 3 + 4 * t ** 2 + t) * p3[1] + (t ** 3 - t ** 2) * p4[1]) / 2
     if (p1[0] < p2[0]):
         direction = 0
     if (p1[0] > p2[0]):
@@ -56,7 +59,9 @@ while True:
     print(n)
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
-    draw_line(points[n-1], points[n])
+
+
+    draw_line(points[n-1], points[n], points[(n +1)%20], points[(n+2)%20])
 
     update_canvas()
     frame = (frame + 1) % 8
