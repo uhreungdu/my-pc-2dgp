@@ -1,7 +1,7 @@
 import turtle
 import random
 
-
+#drill 08 -1 완성
 def stop():
     turtle.bye()
 
@@ -58,12 +58,6 @@ def draw_point(p):
     turtle.goto(p)
     turtle.dot(5, random.random(), random.random(), random.random())
 
-
-
-
-def draw_curve_3_points(p1, p2, p3):
-    # fill here
-    pass
 
 
 def draw_curve_5_points(p1, p2, p3, p4, p5):
