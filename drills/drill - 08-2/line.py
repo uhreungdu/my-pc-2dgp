@@ -11,6 +11,8 @@ frame = 0
 size = 20
 points = [(random.randint(0 + 100, KPU_WIDTH - 100), random.randint(0 + 100, 1024 - 100)) for
         i in range(size)]
+check = [(False)for i in range(size)]
+direction_st = [(0) for i in range(size)]
 n = 1
 
 direction = 0
@@ -22,13 +24,14 @@ def draw_character(p):
     if (direction == 1):
         character.clip_draw(frame * 100, 0, 100, 100, p[0], p[1])
 
-def check_point(p):
+def check_point(p,s):
     global direction
 
-    if (direction == 0):
+    if (s == 0):
         character.clip_draw(100, 100, 100, 100, p[0], p[1])
-    if (direction == 1):
+    if (s == 1):
         character.clip_draw(100, 0, 100, 100, p[0], p[1])
+
 
 
 
@@ -58,6 +61,8 @@ def draw_line(p1, p2,p3,p4):
         direction = 0
     if (p3[0]<p2[0]):
         direction = 1
+    check[n] = True
+    direction_st[n] = direction
     draw_character((x,y))
     if (temp > 100):
         temp = 0
@@ -69,7 +74,11 @@ while True:
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
 
-    check_point(points[(n +1)%20])
+    for i in range(0,20,1):
+        if(check[(i +1)%20] == True):
+            check_point(points[(i +1)%20],direction_st[(i +1)%20])
+
+
     draw_line(points[n-1], points[n], points[(n +1)%20], points[(n+2)%20])
 
     update_canvas()
