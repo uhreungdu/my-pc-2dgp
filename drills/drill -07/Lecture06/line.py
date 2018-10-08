@@ -13,11 +13,13 @@ points = [(random.randint(0, KPU_WIDTH), random.randint(0, 1024)) for
         i in range(size)]
 n = 1
 
-diration = 0
-def draw_character(p,diaration):
-    if (diaration == 0):
+direction = 0
+def draw_character(p):
+    global direction
+
+    if (direction == 0):
         character.clip_draw(frame * 100, 100, 100, 100, p[0], p[1])
-    if (diaration == 1):
+    if (direction == 1):
         character.clip_draw(frame * 100, 0, 100, 100, p[0], p[1])
 
 
@@ -28,25 +30,34 @@ def draw_character(p,diaration):
 
 
 
-
+temp = 0
 def draw_line(p1, p2):
+    global direction
+    global temp
+    global n
+    temp += 2
 
-    for i in range(0,100+1,2):
-        t = i/100
-        x = (1-t) * p1[0] + t*p2[0]
-        y = (1-t) * p1[1] + t*p2[1]
-        if (p1[0] < p2[0]):
-            diration = 0
-        if (p1[1] > p2[0]):
-            diration = 1
-        draw_character((x,y),diration)
+    i = temp
+
+    t = i/100
+    x = (1-t) * p1[0] + t*p2[0]
+    y = (1-t) * p1[1] + t*p2[1]
+    if (p1[0] < p2[0]):
+        direction = 0
+    if (p1[0] > p2[0]):
+        direction = 1
+    draw_character((x,y))
+    if (temp > 100):
+        temp = 0
+        n = (n + 1) % size
 
 
 while True:
+    print(n)
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
     draw_line(points[n-1], points[n])
-    n = (n + 1) % size
+
     update_canvas()
     frame = (frame + 1) % 8
     delay(0.05)
