@@ -58,7 +58,10 @@ while running:
     for boy in team:
         boy.update()
     for ball in balls:
-        ball.fall()
+        if (ball.y >= 65):
+            ball.fall()
+        else:
+            ball.y = 60
     clear_canvas()
     grass.draw()
     for boy in team:
