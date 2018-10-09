@@ -65,15 +65,15 @@ while running:
 
     for ball in balls:
         if(ball.size_choose == 1):
-            if (ball.y >= 75):
+            if (ball.y >= 65):
+                ball.fall()
+            else:
+                ball.y = 60
+        else:
+            if(ball.y  >= 75):
                 ball.fall()
             else:
                 ball.y = 70
-        else:
-            if(ball.y  >= 85):
-                ball.fall()
-            else:
-                ball.y = 80
 
     clear_canvas()
     grass.draw()
