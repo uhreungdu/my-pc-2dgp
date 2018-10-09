@@ -1,7 +1,7 @@
 from pico2d import *
 import random
 
-
+# drill 09 완성
 # Game object class here
 class Grass:
     def __init__(self):
