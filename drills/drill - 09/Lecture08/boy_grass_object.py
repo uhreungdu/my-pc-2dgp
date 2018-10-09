@@ -24,7 +24,16 @@ class Boy:
         self.image.clip_draw(self.frame*100,0,100,100,self.x,self.y)
 
 class Ball:
-    pass
+    def __init__(self):
+        self.image = load_image('ball21x21.png')
+        self.x, self.y = random.randint(100, 700), 600
+        self.speed = random.randint(5, 20)
+
+    def draw(self):
+        self.image.draw(self.x, self.y)
+
+    def fall(self):
+        self.y -= self.speed
 
 
 def handle_events():
@@ -41,17 +50,22 @@ open_canvas()
 grass = Grass()
 running = True
 team = [Boy() for i in range(11)]
-
+balls = [Ball() for i in range(20)]
 
 # game main loop code
 while running:
     handle_events()
     for boy in team:
         boy.update()
+    for ball in balls:
+        ball.fall()
     clear_canvas()
     grass.draw()
     for boy in team:
         boy.draw()
+
+    for ball in balls:
+        ball.draw()
     update_canvas()
     delay(0.05)
 
