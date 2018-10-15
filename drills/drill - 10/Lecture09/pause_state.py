@@ -6,10 +6,12 @@ import main_state
 
 name = "PauseState"
 image = None
+pause2 = None
 logo_time = 0.0
 pause = None
 boy = None
 grass = None
+swap_image = 0
 
 class Pause:
     def __init__(self):
@@ -17,6 +19,14 @@ class Pause:
 
     def draw(self):
         self.image.clip_draw(0, 0, 64, 64, 400, 300)
+class Pause2:
+    def __init__(self):
+        self.image = load_image('rounded-pause-button.png')
+    def draw(self):
+        self.image.clip_draw(0, 0, 64, 64, 400, 300)
+
+
+
 class Grass:
     def __init__(self):
         self.image = load_image('grass.png')
@@ -56,6 +66,8 @@ class Boy:
 def enter():
     global pause
     pause = Pause()
+    global pause2
+    pause2 = Pause2()
     global boy
     boy = main_state.boy
     global grass
@@ -67,6 +79,8 @@ def enter():
 def exit():     #종료
     global pause
     del(pause)
+    global pause2
+    del(pause2)
     global boy
     del(boy)
     global grass
@@ -77,11 +91,20 @@ def update():
 
 def draw():
     global image
+    global swap_image
+
     clear_canvas()
-    pause.draw()
+
+    if swap_image % 2 == 0:
+        pause.draw()
+    elif swap_image % 2 == 1:
+        pause2.draw()
+
     boy.draw()
     grass.draw()
     update_canvas()
+    swap_image += 1
+    delay(0.09)
 
 
 
