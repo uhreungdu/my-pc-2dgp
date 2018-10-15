@@ -23,8 +23,8 @@ def enter():
 
 
 def exit():     #종료
-    global image
-    del(image)
+    global pause
+    del(pause)
 
 
 def update():
@@ -46,7 +46,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN:
-            if event.type == SDLK_p:
+            if event.key == SDLK_p:
                 game_framework.pop_state()
 
 
