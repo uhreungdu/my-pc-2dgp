@@ -10,10 +10,10 @@ pause = None
 
 class Pause:
     def __init__(self):
-        self.image = load_image('pause.png')
+        self.image = load_image('round-pause-button.png')
 
     def draw(self):
-        self.image.clip_draw(0, 0, 900, 900, 400, 300)
+        self.image.clip_draw(0, 0, 64, 64, 400, 300)
 
 
 def enter():
