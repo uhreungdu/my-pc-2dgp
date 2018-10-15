@@ -26,13 +26,40 @@ class Grass:
 
 
 
+class Boy:
+    def __init__(self):
+        self.x, self.y = 0, 90
+        self.frame = 0
+        self.image = load_image('run_animation.png')
+        self.dir = 0
+
+    def update(self):
+        self.frame = (self.frame + 1) % 8
+        if (self.dir == -1):
+            self.move_left()
+
+        elif (self.dir == 1):
+            self.move_right()
+
+    def draw(self):
+        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+
+    def move_left(self):
+        if(self.x > 0):
+            self.x += -1
+    def move_right(self):
+        if(self.x < 800):
+            self.x += 1
+
+
+
 def enter():
     global pause
     pause = Pause()
     global boy
-    boy = main_state.Boy()
+    boy = main_state.boy
     global grass
-    grass = main_state.Grass()
+    grass = main_state.grass
 
 
 
@@ -47,7 +74,6 @@ def exit():     #종료
 
 def update():
     pass
-
 
 def draw():
     global image
