@@ -4,6 +4,7 @@ from pico2d import *
 class ballut:
     pass
 
+
 class player:
     def __init__(self):
         self.x, self.y = 100, 500
@@ -16,13 +17,13 @@ class player:
         self.character.clip_draw(0,150,60,50,self.x,self.y)
 
     def move_left(self):
-        self.x -= (100 *0.05)
+        self.x -= (200 *0.01)
     def move_right(self):
-        self.x += (100 *0.05)
+        self.x += (200 *0.01)
     def move_up(self):
-        self.y += (100 *0.05)
+        self.y += (200 *0.01)
     def move_down(self):
-        self.y -= (100 *0.05)
+        self.y -= (200 *0.01)
 
     def update(self):
         if(self.direction_sero == -1):
@@ -93,4 +94,4 @@ while moving:
 
     update_canvas()
 
-    delay(0.05)
+    delay(0.01)
