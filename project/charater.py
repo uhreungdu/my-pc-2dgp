@@ -1,8 +1,7 @@
 from pico2d import *
 
 
-class ballut:
-    pass
+
 
 
 class player:
@@ -27,17 +26,36 @@ class player:
 
     def update(self):
         if(self.direction_sero == -1):
-            self.move_down()
+            if (play.y > 50):
+                self.move_down()
         elif(self.direction_sero == 1):
-            self.move_up()
+            if (play.y < 974):
+                self.move_up()
 
 
         if(self.direction_garo == -1):
-            self.move_left()
+            if (play.x > 50):
+                self.move_left()
         elif(self.direction_garo == 1):
-            self.move_right()
+            if (play.x < 1230):
+                self.move_right()
 
 
+class Ballut:
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+        self.image = load_image('fight_plane.png')
+        self.exist = False
+
+
+    def draw(self):
+        if(self.exist ==True):
+            self.image.clip_draw(113, 120, 40, 20, self.x, self.y)
+
+    def update(self):
+        if(self.exist == True):
+           self.x += (200 *0.01)
 
 
 open_canvas(1280,1024)
@@ -45,7 +63,7 @@ moving = True
 play = player()
 
 
-
+ballut = Ballut()
 
 
 def handle_events():
@@ -56,19 +74,20 @@ def handle_events():
             moving = False
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:
-                if(play.x <1230):
-                    play.direction_garo = 1
+                play.direction_garo = 1
             elif event.key == SDLK_LEFT:
-                if(play.x > 50):
-                    play.direction_garo = -1
+                play.direction_garo = -1
             elif event.key == SDLK_UP:
-                if(play.y < 974):
-                    play.direction_sero = 1
+                play.direction_sero = 1
             elif event.key == SDLK_DOWN:
-                if(play.y > 50):
-                    play.direction_sero = -1
+                play.direction_sero = -1
             elif event.key == SDLK_ESCAPE:
                 moving = False
+            elif event.key == SDLK_x:
+                ballut.x = play.x
+                ballut.y = play.y
+                ballut.exist = True
+
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_RIGHT:
                 if(play.x <1230):
@@ -88,9 +107,10 @@ def handle_events():
 while moving:
     handle_events()
     play.update()
+    ballut.update()
     clear_canvas()
     play.draw()
-
+    ballut.draw()
 
     update_canvas()
 
