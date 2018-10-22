@@ -57,7 +57,7 @@ class Ballut:
         if(self.exist == True):
             self.x += (200 * 0.01)
             if(self.x > 1280):
-                self.exist == False
+                self.exist = False
 
 
 open_canvas(1280,1024)
