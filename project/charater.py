@@ -55,7 +55,9 @@ class Ballut:
 
     def update(self):
         if(self.exist == True):
-           self.x += (200 *0.01)
+            self.x += (200 * 0.01)
+            if(self.x > 1280):
+                self.exist == False
 
 
 open_canvas(1280,1024)
@@ -63,11 +65,12 @@ moving = True
 play = player()
 
 
-ballut = Ballut()
-
+balluts = [Ballut() for i in range(2000)]
+shoot_count = 0
 
 def handle_events():
     global moving
+    global shoot_count
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -84,9 +87,18 @@ def handle_events():
             elif event.key == SDLK_ESCAPE:
                 moving = False
             elif event.key == SDLK_x:
-                ballut.x = play.x
-                ballut.y = play.y
-                ballut.exist = True
+                if shoot_count < 2000:
+                    balluts[shoot_count].x = play.x
+                    balluts[shoot_count].y = play.y
+                    balluts[shoot_count].exist = True
+                    shoot_count += 1
+                else:
+                    balluts[shoot_count % 2000].x = play.x
+                    balluts[shoot_count % 2000].y = play.y
+                    balluts[shoot_count % 2000].exist = True
+                    shoot_count += 1
+
+
 
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_RIGHT:
@@ -107,10 +119,16 @@ def handle_events():
 while moving:
     handle_events()
     play.update()
-    ballut.update()
+
+
+    for ball in balluts:
+        ball.update()
+
+
     clear_canvas()
     play.draw()
-    ballut.draw()
+    for ball in balluts:
+        ball.draw()
 
     update_canvas()
 
