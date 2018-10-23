@@ -42,11 +42,13 @@ class player:
 
 
 class Ballut:
+    image = None
     def __init__(self):
         self.x = 0
         self.y = 0
-        self.image = load_image('fight_plane.png')
         self.exist = False
+        if(Ballut.image == None):
+            Ballut.image = load_image('fight_plane.png')
 
 
     def draw(self):
