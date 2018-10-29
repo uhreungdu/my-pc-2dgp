@@ -105,7 +105,7 @@ class DashState:
             boy.velocity += 1
         elif event == DASH_DOWN:
             boy.speed = 5
-            boy.timer = 100
+            boy.timer = 50
         elif event == DASH_UP:
             boy.speed = 1
 
