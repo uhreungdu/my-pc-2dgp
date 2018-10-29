@@ -68,6 +68,8 @@ class RunState:
             boy.velocity -= 1
         elif event == LEFT_UP:
             boy.velocity += 1
+
+
         boy.dir = boy.velocity
 
     @staticmethod
@@ -93,12 +95,24 @@ class RunState:
 class DashState:
     @staticmethod
     def enter(boy, event):
-        boy.dir = boy.velocity
-        boy.speed = 5
+        if event == RIGHT_DOWN:
+            boy.velocity += 1
+        elif event == LEFT_DOWN:
+            boy.velocity -= 1
+        elif event == RIGHT_UP:
+            boy.velocity -= 1
+        elif event == LEFT_UP:
+            boy.velocity += 1
+        elif event == DASH_DOWN:
+            boy.speed = 5
+            boy.timer = 100
+        elif event == DASH_UP:
+            boy.speed = 1
 
     @staticmethod
     def exit(boy, event):
-        boy.speed = 1
+        if event == SPACE:
+            boy.fire_ball()
 
 
 
@@ -108,6 +122,8 @@ class DashState:
         boy.timer -= 1
         boy.x += boy.velocity * boy.speed
         boy.x = clamp(25, boy.x, 1600 - 25)
+        if boy.timer == 0:
+            boy.add_event(DASH_UP)
 
     @staticmethod
     def draw(boy):
@@ -148,11 +164,11 @@ next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
                 SLEEP_TIMER: SleepState, SPACE: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState,
-               SPACE: RunState},
+               SPACE: RunState, DASH_DOWN: DashState, DASH_UP: RunState},
     SleepState: {LEFT_DOWN : RunState, RIGHT_DOWN: RunState,
                  LEFT_UP: RunState, RIGHT_UP: RunState, SPACE: IdleState},
-    DashState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
-                }
+    DashState: {RIGHT_UP: DashState, LEFT_UP: DashState, RIGHT_DOWN: DashState, LEFT_DOWN: DashState,
+                DASH_UP: RunState}
 }
 
 class Boy:
