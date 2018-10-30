@@ -22,7 +22,7 @@ FRAMES_PER_ACTION = 8
 
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, GHOST = range(7)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE = range(6)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -59,9 +59,9 @@ class IdleState:
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
 
-        if boy.timer <= get_time() - 10:
+        if boy.timer <= get_time() - 1.0:
             boy.add_event(SLEEP_TIMER)
-            boy.pop_up()
+            boy.pop_ghost()
 
     @staticmethod
     def draw(boy):
@@ -84,6 +84,7 @@ class RunState:
         elif event == LEFT_UP:
             boy.velocity += RUN_SPEED_PPS
         boy.dir = clamp(-1, boy.velocity, 1)
+
 
     @staticmethod
     def exit(boy, event):
@@ -118,6 +119,7 @@ class SleepState:
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
 
+
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
@@ -128,17 +130,14 @@ class SleepState:
 
 
 
-class Ghoststate:
-    pass
-
-
 
 
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
                 SLEEP_TIMER: SleepState, SPACE: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState, SPACE: RunState},
-    SleepState: {LEFT_DOWN: RunState, RIGHT_DOWN: RunState, LEFT_UP: RunState, RIGHT_UP: RunState, SPACE: IdleState},
+    SleepState: {LEFT_DOWN: RunState, RIGHT_DOWN: RunState, LEFT_UP: RunState, RIGHT_UP: RunState, SPACE: IdleState,
+                 }
 }
 
 class Boy:
@@ -160,8 +159,8 @@ class Boy:
         ball = Ball(self.x, self.y, self.dir*3)
         game_world.add_object(ball, 1)
 
-    def pop_up(self):
-        ghost = Ghost(self.x,self.y,self.dir, self.frame)
+    def pop_ghost(self):
+        ghost = Ghost(self.x, self.y, self.dir, self.frame)
         game_world.add_object(ghost, 1)
 
     def add_event(self, event):
