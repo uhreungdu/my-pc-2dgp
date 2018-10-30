@@ -1,6 +1,7 @@
 import game_framework
 from pico2d import *
 from ball import Ball
+from ghost import Ghost
 
 import game_world
 
@@ -21,7 +22,7 @@ FRAMES_PER_ACTION = 8
 
 
 # Boy Event
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE = range(6)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, GHOST = range(7)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -35,7 +36,6 @@ key_event_table = {
 # Boy States
 
 class IdleState:
-
     @staticmethod
     def enter(boy, event):
         if event == RIGHT_DOWN:
@@ -48,6 +48,7 @@ class IdleState:
             boy.velocity += RUN_SPEED_PPS
         boy.timer = get_time()
 
+
     @staticmethod
     def exit(boy, event):
         if event == SPACE:
@@ -58,8 +59,9 @@ class IdleState:
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
 
-        if boy.timer <= get_time() - 9.5:
+        if boy.timer <= get_time() - 10:
             boy.add_event(SLEEP_TIMER)
+            boy.pop_up()
 
     @staticmethod
     def draw(boy):
@@ -126,12 +128,17 @@ class SleepState:
 
 
 
+class Ghoststate:
+    pass
+
+
 
 
 next_state_table = {
-    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState, SPACE: IdleState},
+    IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
+                SLEEP_TIMER: SleepState, SPACE: IdleState},
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState, SPACE: RunState},
-    SleepState: {LEFT_DOWN: RunState, RIGHT_DOWN: RunState, LEFT_UP: RunState, RIGHT_UP: RunState, SPACE: IdleState}
+    SleepState: {LEFT_DOWN: RunState, RIGHT_DOWN: RunState, LEFT_UP: RunState, RIGHT_UP: RunState, SPACE: IdleState},
 }
 
 class Boy:
@@ -153,6 +160,9 @@ class Boy:
         ball = Ball(self.x, self.y, self.dir*3)
         game_world.add_object(ball, 1)
 
+    def pop_up(self):
+        ghost = Ghost(self.x,self.y,self.dir, self.frame)
+        game_world.add_object(ghost, 1)
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -173,4 +183,5 @@ class Boy:
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
             self.add_event(key_event)
+
 
