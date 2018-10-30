@@ -16,7 +16,6 @@ class Ghost:
         self.x, self.y, self.velocity = x, y, velocity
 
         self.frame = frame
-        self.alpha = (random.randint(1, 10) / 10)
         self.exist = True
         self.up = True
         self.angle = 270
