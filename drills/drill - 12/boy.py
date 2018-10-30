@@ -59,7 +59,7 @@ class IdleState:
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
 
-        if boy.timer <= get_time() - 1.0:
+        if boy.timer <= get_time() - 10:
             boy.add_event(SLEEP_TIMER)
             boy.pop_ghost()
 
