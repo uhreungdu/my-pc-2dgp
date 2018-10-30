@@ -16,7 +16,6 @@ class Ghost:
         self.x, self.y, self.velocity = x, y, velocity
 
         self.frame = frame
-        self.exist = True
         self.up = True
         self.angle = 270
 
