@@ -21,16 +21,14 @@ class Ghost:
         self.angle = 270
 
     def draw(self):
-        if self.exist == False:
-            pass
-        else:
-            if self.velocity == 1:
-                self.image.clip_draw(int(self.frame) * 100, 300, 100, 100, self.x, self.y)
-                self.image.opacify(0.5)
+        if self.velocity == 1:
+            self.image.clip_draw(int(self.frame) * 100, 300, 100, 100, self.x, self.y)
+            self.image.opacify(0.5)
 
-            else:
-                self.image.clip_draw(int(self.frame) * 100, 200, 100, 100, self.x, self.y)
-                self.image.opacify(0.5)
+        else:
+            self.image.clip_draw(int(self.frame) * 100, 200, 100, 100, self.x, self.y)
+            self.image.opacify(0.5)
+
 
     def update(self):
         if main_state.boy.cur_state != boy.SleepState:
