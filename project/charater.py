@@ -1,12 +1,85 @@
 from pico2d import *
 import game_framework
 import resource_manage
+from bullet import Bullet
+import game_world
+
 
 name = "charater"
 play = None
 moving = True
 image = None
-shoot_count = 0
+
+PIXEL_PER_METER = (1.0 / 0.3)
+RUN_SPEED_KMPH = 5
+RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
+RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
+RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+
+# Boy Action Speed
+# fill expressions correctly
+TIME_PER_ACTION = 0.5
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+FRAMES_PER_ACTION = 8
+
+
+
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, FIRE, UP_UP, UP_DOWN, DOWN_UP, DOWN_DOWN = range(9)
+
+key_event_table = {
+    (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
+    (SDL_KEYDOWN, SDLK_LEFT): LEFT_DOWN,
+    (SDL_KEYDOWN, SDLK_UP): UP_DOWN,
+    (SDL_KEYDOWN, SDLK_DOWN): DOWN_DOWN,
+    (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
+    (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
+    (SDL_KEYUP, SDLK_UP): UP_UP,
+    (SDL_KEYUP, SDLK_DOWN): DOWN_UP,
+    (SDL_KEYDOWN, SDLK_x): FIRE
+}
+class PlayState:
+    @staticmethod
+    def enter(play, event):
+        if event == RIGHT_DOWN:
+            play.velocity_x += RUN_SPEED_PPS
+        elif event == LEFT_DOWN:
+            play.velocity_x -= RUN_SPEED_PPS
+        elif event == UP_DOWN:
+            play.velocity_y += RUN_SPEED_PPS
+        elif event == DOWN_DOWN:
+            play.velocity_y -= RUN_SPEED_PPS
+        elif event == RIGHT_UP:
+            play.velocity_x -= RUN_SPEED_PPS
+        elif event == LEFT_UP:
+            play.velocity_x += RUN_SPEED_PPS
+        elif event == UP_UP:
+            play.velocity_y -= RUN_SPEED_PPS
+        elif event == DOWN_UP:
+            play.velocity_y += RUN_SPEED_PPS
+        play.direction = clamp(-0.5, play.velocity_x, 0.5)
+        play.direction = clamp(-0.5, play.velocity_y, 0.5)
+
+    @staticmethod
+    def exit(play, event):
+        if event == FIRE:
+            play.fire_shoting()
+
+
+    @staticmethod
+    def do(play):
+        play.x += play.velocity_x
+        play.x = clamp(50, play.x, 1280 - 50)
+        play.y += play.velocity_y
+        play.y = clamp(50, play.y, 1024 - 200)
+
+    @staticmethod
+    def draw(play):
+        resource_manage.resouse.spri_charater.clip_draw(0, 150, 60, 50, play.x, play.y)
+
+next_state_table = {
+    PlayState:{RIGHT_UP: PlayState, LEFT_UP: PlayState, RIGHT_DOWN: PlayState, LEFT_DOWN: PlayState,
+                FIRE: PlayState, UP_UP: PlayState, UP_DOWN: PlayState, DOWN_DOWN:PlayState, DOWN_UP: PlayState}
+}
 
 class player:
 
@@ -15,65 +88,37 @@ class player:
         self.x, self.y = 100, 500
         self.character = resource_manage.resouse.spri_charater
         self.direction = 1
-        self.direction_sero = 0
-        self.direction_garo = 0
+        self.velocity_x = 0
+        self.velocity_y = 0
+        self.frame = 0
+        self.event_que = []
+        self.cur_state = PlayState
+        self.cur_state.enter(self, None)
+
         self.hp = 100
 
-    def draw(self):
-        resource_manage.resouse.spri_charater.clip_draw(0,150,60,50,self.x,self.y)
+    def add_event(self, event):
+        self.event_que.insert(0, event)
 
-    def move_left(self):
-        self.x -= (100 *0.01)
-    def move_right(self):
-        self.x += (100 *0.01)
-    def move_up(self):
-        self.y += (100 *0.01)
-    def move_down(self):
-        self.y -= (100 *0.01)
+    def fire_shoting(self):
+        ball = Bullet(self.x, self.y, 10)
+        game_world.add_object(ball,1)
+
 
     def update(self):
-        if(self.direction_sero == -1):
-            if (self.y > 50):
-                self.move_down()
-        elif(self.direction_sero == 1):
-            if (self.y < 974):
-                self.move_up()
-
-
-        if(self.direction_garo == -1):
-            if (self.x > 50):
-                self.move_left()
-        elif(self.direction_garo == 1):
-            if (self.x < 1230):
-                self.move_right()
-
-
-class Ballut:
-    image = None
-    def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.exist = False
-        if(Ballut.image == None):
-            Ballut.image = resource_manage.resouse.spri_bullut
-
-
+        self.cur_state.do(self)
+        if len(self.event_que) > 0:
+            event = self.event_que.pop()
+            self.cur_state.exit(self, event)
+            self.cur_state = next_state_table[self.cur_state][event]
+            self.cur_state.enter(self, event)
     def draw(self):
-        if(self.exist ==True):
-            resource_manage.resouse.spri_bullut.clip_draw(113, 120, 40, 20, self.x, self.y)
+        self.cur_state.draw(self)
 
-    def update(self):
-        if(self.exist == True):
-            self.x += (200 * 0.01)
-            if(self.x > 1280):
-                self.exist = False
+    def handle_event(self, event):
+        if (event.type, event.key) in key_event_table:
+            key_event = key_event_table[(event.type, event.key)]
+            self.add_event(key_event)
 
 
 
-
-
-balluts = None
-shoot_count = 0
-
-def handle_events():
-    pass

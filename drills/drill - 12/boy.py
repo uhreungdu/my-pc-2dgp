@@ -84,6 +84,7 @@ class RunState:
         elif event == LEFT_UP:
             boy.velocity += RUN_SPEED_PPS
         boy.dir = clamp(-1, boy.velocity, 1)
+        print(game_framework.frame_time)
 
 
     @staticmethod
