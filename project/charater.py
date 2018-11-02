@@ -11,7 +11,7 @@ moving = True
 image = None
 
 PIXEL_PER_METER = (1.0 / 0.3)
-RUN_SPEED_KMPH = 5
+RUN_SPEED_KMPH = 2
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -101,7 +101,7 @@ class player:
         self.event_que.insert(0, event)
 
     def fire_shoting(self):
-        ball = Bullet(self.x, self.y, 10)
+        ball = Bullet(self.x, self.y, 10, 1)
         game_world.add_object(ball,1)
 
 

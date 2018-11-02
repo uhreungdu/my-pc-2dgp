@@ -1,18 +1,24 @@
 from pico2d import *
 from charater import player
+from enemy import Wheel
 
 import game_framework
 import game_world
+import random
 
 name = "MainGame"
 
 play = None
+wheel_enemy = None
 shoot_count = 0
 
 def enter():
     global play
+    global wheel_enemy
     play = player()
+    wheel_enemy = Wheel()
     game_world.add_object(play, 1)
+    game_world.add_object(wheel_enemy, 1)
 
 
 
