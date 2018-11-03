@@ -76,7 +76,9 @@ class PlayState:
 
     @staticmethod
     def draw(play):
-        resource_manage.resouse.spri_charater.clip_draw(0, 150, 60, 50, play.x, play.y)
+        play.character.clip_draw(0, 150, 60, 50, play.x, play.y)
+        play.character.opacify(play.opacity)
+
 
 next_state_table = {
     PlayState:{RIGHT_UP: PlayState, LEFT_UP: PlayState, RIGHT_DOWN: PlayState, LEFT_DOWN: PlayState,
@@ -95,6 +97,7 @@ class player:
         self.velocity_y = 0
         self.frame = 0
         self.round = 0
+        self.opacity = 1
         self.event_que = []
         self.cur_state = PlayState
         self.cur_state.enter(self, None)

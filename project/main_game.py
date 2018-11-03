@@ -5,6 +5,7 @@ from enemy import Wheel
 import game_framework
 import game_world
 import random
+import game_over
 
 name = "MainGame"
 
@@ -62,5 +63,6 @@ def draw():
         game_object.draw()
     if play.hp == 0:
         game_world.remove_object(play)
+        #game_framework.change_state(game_over)
     update_canvas()
 

@@ -67,5 +67,6 @@ class Bullet:
 
 
 
+
         if self.x < 50 or self.x > 1280 - 50:
             game_world.remove_object(self)
