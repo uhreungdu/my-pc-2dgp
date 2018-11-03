@@ -1,7 +1,7 @@
 from pico2d import *
 from charater import player
 from enemy import Wheel
-
+from Stage_background import Stage
 import game_framework
 import game_world
 import random
@@ -14,20 +14,24 @@ wheel_enemy = None
 wheel_enemy2 = None
 wheel_enemy3 = None
 shoot_count = 0
+stage = None
 
 def enter():
     global play
     global wheel_enemy
     global wheel_enemy2
     global wheel_enemy3
+    global stage
     play = player()
     wheel_enemy = Wheel()
     wheel_enemy2 = Wheel()
     wheel_enemy3 = Wheel()
+    stage = Stage()
     game_world.add_object(play, 1)
     game_world.add_object(wheel_enemy, 1)
     game_world.add_object(wheel_enemy2, 1)
     game_world.add_object(wheel_enemy3, 1)
+    game_world.add_object(stage, 0)
 
 
 

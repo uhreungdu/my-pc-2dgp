@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7be35f8c-43eb-4a96-ab29-323f8421a038" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/bullet.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/bullet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/charater.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/charater.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/game_over.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/game_over.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/main_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/main_game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/start_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/start_game.py" afterDir="false" />
-    </list>
+    <list default="true" id="7be35f8c-43eb-4a96-ab29-323f8421a038" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +12,7 @@
     <session id="-1886510542">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.0" value="6" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.opened" value="7" />
