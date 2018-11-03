@@ -25,16 +25,18 @@ class Wheel:
     def __init__(self):
         if Wheel.image == None:
             Wheel.image = resource_manage.resouse.spri_Wheel_enemy
-        self.x, self.y = 1300, 500 + random.randint(-100, 100)
+        self.x, self.y = 1350, 500 + random.randint(-100, 100)
         self.velocity = 0
         self.frame = 0
         self.popup = True
+        self.fire = False
         self.cur_time = game_framework.frame_time
         self.count = 0
+        self.dir = 0
 
 
     def update(self):
-        self.velocity += 10
+        self.velocity += 0.05
         if self.velocity > 10 and self.popup == True:
             self.x -= 0.5
             if self.x <= 900:
@@ -42,16 +44,35 @@ class Wheel:
                 self.x += 0
         if self.popup == False:
             self.x += 0
-            self.count += 1
-            if(self.count  == 50):
-                ball = Bullet(self.x, self.y, -2, 2)
-                game_world.add_object(ball, 1)
+            self.count += 0.5
+            if((self.count) % 50 == 0):
+                if(self.count <= 400):
+                    self.fire = True
+                if(self.fire == True):
+                    ball = Bullet(self.x, self.y, -2, 2)
+                    game_world.add_object(ball, 1)
+                else:
+                    pass
+            if((self.count) >= 400):
+                self.fire = False
+                self.dir = 1
+                self.x += 0.5
+                if self.x >= 1350:
+                    self.popup = True
+                    self.y += random.randint(-200,200)
+                    self.count = 0
+                    self.velocity = 0
+                    self.dir = 0
+
 
 
 
 
     def draw(self):
-        resource_manage.resouse.spri_Wheel_enemy.clip_composite_draw(0,516,50,50,0,'h',self.x,self.y,50,50)
+        if self.dir == 0:
+            resource_manage.resouse.spri_Wheel_enemy.clip_composite_draw(0, 516, 50, 50, 0, 'h', self.x, self.y, 50, 50)
+        if self.dir == 1:
+            resource_manage.resouse.spri_Wheel_enemy.clip_composite_draw(0, 516, 50, 50, 0, '', self.x, self.y, 50, 50)
 
 
 

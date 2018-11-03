@@ -10,15 +10,23 @@ name = "MainGame"
 
 play = None
 wheel_enemy = None
+wheel_enemy2 = None
+wheel_enemy3 = None
 shoot_count = 0
 
 def enter():
     global play
     global wheel_enemy
+    global wheel_enemy2
+    global wheel_enemy3
     play = player()
     wheel_enemy = Wheel()
+    wheel_enemy2 = Wheel()
+    wheel_enemy3 = Wheel()
     game_world.add_object(play, 1)
     game_world.add_object(wheel_enemy, 1)
+    game_world.add_object(wheel_enemy2, 1)
+    game_world.add_object(wheel_enemy3, 1)
 
 
 
@@ -47,9 +55,12 @@ def update():
         game_object.update()
 
 
+
 def draw():
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
+    if play.hp == 0:
+        game_world.remove_object(play)
     update_canvas()
 

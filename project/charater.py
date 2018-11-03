@@ -65,12 +65,14 @@ class PlayState:
             play.fire_shoting()
 
 
+
     @staticmethod
     def do(play):
         play.x += play.velocity_x
         play.x = clamp(50, play.x, 1280 - 50)
         play.y += play.velocity_y
         play.y = clamp(50, play.y, 1024 - 200)
+
 
     @staticmethod
     def draw(play):
@@ -87,15 +89,15 @@ class player:
     def __init__(self):
         self.x, self.y = 100, 500
         self.character = resource_manage.resouse.spri_charater
+        self.hp = 200
         self.direction = 1
         self.velocity_x = 0
         self.velocity_y = 0
         self.frame = 0
+        self.round = 0
         self.event_que = []
         self.cur_state = PlayState
         self.cur_state.enter(self, None)
-
-        self.hp = 100
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -114,6 +116,8 @@ class player:
             self.cur_state.enter(self, event)
     def draw(self):
         self.cur_state.draw(self)
+        self.round = 5
+        #print(self.hp)
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:
