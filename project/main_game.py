@@ -53,7 +53,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.quit()
+            game_framework.pop_state()
         else:
             play.handle_event(event)
 
@@ -65,8 +65,8 @@ def update():
     if play.hp == 0:
         game_world.remove_object(play)
         game_framework.change_state(game_over)
-    if wheel_enemy.popup == 2 and wheel_enemy.x >= 1315:
-        wave_count += 1
+    if wheel_enemy.popup == 2 and wheel_enemy.x >= 1340:
+        wave_count += 0.5
 
 
 

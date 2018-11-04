@@ -69,9 +69,13 @@ class Wheel:
         if self.popup == 2:
             self.dir = 1
             self.x += RUN_SPEED_PPS * game_framework.frame_time
-            if self.x >= 1320:
+            if self.x >= 1350:
+                self.x = 1320
                 self.popup = 0
-                self.y += random.randint(-200, 150)
+                if self.y <= 900:
+                    self.y += random.randint(-200, 150)
+                if self.y >= 900:
+                    self.y += random.randint(-400, -200)
                 self.count = 0
                 self.velocity = 0
                 self.dir = 0
