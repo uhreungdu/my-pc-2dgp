@@ -4,13 +4,14 @@ import game_world
 import resource_manage
 import math
 import main_game
-
+import random
 
 class Bullet:
     image = None
 
     def __init__(self, x = 400, y = 300, velocity = 1, ID = 1, paturn = 0):
         self.ID = ID
+
         if Bullet.image == None:
             if self.ID == 1:
                 Bullet.image = resource_manage.resouse.spri_bullut
@@ -30,6 +31,7 @@ class Bullet:
         self.deltaX = 0
         self.deltaY = 0
         self.length = 0
+        self.paturn = paturn
 
 
 
@@ -45,19 +47,38 @@ class Bullet:
         if self.ID == 1:
             self.x += self.velocity / 2
         if self.ID == 2:
-            self.angle += 2
-            self.rad = self.angle * math.pi / 180
+            if self.paturn == 0:
+                self.x += self.velocity / 2
+            if self.paturn == 1:
+                self.angle += 2
+                self.rad = self.angle * math.pi / 180
 
-            self.base_x += self.velocity / 2
+                self.base_x += self.velocity / 2
 
-            self.circle_x = 30 * math.cos(self.rad)
-            self.circle_y = 30 * math.sin(self.rad)
+                self.circle_x = 30 * math.cos(self.rad)
+                self.circle_y = 30 * math.sin(self.rad)
 
-            self.x = self.circle_x +self.base_x
-            self.y = self.circle_y +self.base_y
+                self.x = self.circle_x + self.base_x
+                self.y = self.circle_y + self.base_y
 
-            self.deltaX = self.x-main_game.play.x
-            self.deltaY = self.y-main_game.play.y
+            if self.paturn == 2:
+                self.angle += 2
+                self.rad = self.angle * math.pi / 180
+                self.base_x += self.velocity / 2
+
+                self.circle_x = 30 * math.cos(self.rad)
+
+                self.x = self.circle_x + self.base_x
+            if self.paturn == 3:
+                self.angle += 2
+                self.rad = self.angle * math.pi / 180
+
+                self.x += self.velocity / 2 * math.cos(self.rad) + self.velocity
+
+
+
+            self.deltaX = self.x - main_game.play.x
+            self.deltaY = self.y - main_game.play.y
 
             self.length = math.sqrt(self.deltaX * self.deltaX + self.deltaY * self.deltaY)
 

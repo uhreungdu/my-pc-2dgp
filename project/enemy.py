@@ -34,11 +34,14 @@ class Wheel:
         self.cur_time = game_framework.frame_time
         self.count = 0
         self.dir = 0
+        self.paturn = 0
 
 
     def update(self):
         self.velocity += 0.05
+
         if self.velocity > 10 and self.popup == 0:
+            #self.paturn = random.randint(0, 3)
             self.x -= 0.5
             if self.x <= 900:
                 self.popup = 1
@@ -50,7 +53,7 @@ class Wheel:
                 if(self.count <= 400):
                     self.fire = True
                 if(self.fire == True):
-                    ball = Bullet(self.x, self.y, -2, 2)
+                    ball = Bullet(self.x, self.y, -2, 2,self.paturn)
                     game_world.add_object(ball, 1)
                 else:
                     pass
@@ -62,10 +65,11 @@ class Wheel:
             self.x += 0.5
             if self.x >= 1320:
                 self.popup = 0
-                self.y += random.randint(-200, 200)
+                self.y += random.randint(-200, 150)
                 self.count = 0
                 self.velocity = 0
                 self.dir = 0
+                self.paturn = random.randint(0, 3)
 
 
 

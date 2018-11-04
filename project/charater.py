@@ -107,7 +107,7 @@ class player:
         self.event_que.insert(0, event)
 
     def fire_shoting(self):
-        ball = Bullet(self.x, self.y, 10, 1)
+        ball = Bullet(self.x, self.y, 10, 1,0)
         game_world.add_object(ball,1)
 
     def update(self):
