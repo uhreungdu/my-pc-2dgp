@@ -5,7 +5,7 @@ objects = [[],[]]
 
 
 def add_object(o, layer):
-    print(objects)
+    #print(objects)
     objects[layer].append(o)
 
 

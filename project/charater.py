@@ -10,8 +10,8 @@ play = None
 moving = True
 image = None
 
-PIXEL_PER_METER = (1.0 / 0.3)
-RUN_SPEED_KMPH = 2
+PIXEL_PER_METER = (10.0 / 0.3)
+RUN_SPEED_KMPH = 20
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -58,6 +58,7 @@ class PlayState:
             play.velocity_y += RUN_SPEED_PPS
         play.direction = clamp(-0.5, play.velocity_x, 0.5)
         play.direction = clamp(-0.5, play.velocity_y, 0.5)
+        print(game_framework.frame_time)
 
     @staticmethod
     def exit(play, event):
@@ -68,9 +69,9 @@ class PlayState:
 
     @staticmethod
     def do(play):
-        play.x += play.velocity_x
+        play.x += play.velocity_x * game_framework.frame_time
         play.x = clamp(50, play.x, 1280 - 50)
-        play.y += play.velocity_y
+        play.y += play.velocity_y * game_framework.frame_time
         play.y = clamp(50, play.y, 1024 - 200)
 
 

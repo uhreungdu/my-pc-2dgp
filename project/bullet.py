@@ -6,6 +6,20 @@ import math
 import main_game
 import random
 
+PIXEL_PER_METER = (10.0 / 0.3)
+RUN_SPEED_KMPH = 30
+RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
+RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
+RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+
+# Boy Action Speed
+# fill expressions correctly
+TIME_PER_ACTION = 0.5
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+FRAMES_PER_ACTION = 8
+
+
+
 class Bullet:
     image = None
 
@@ -41,19 +55,19 @@ class Bullet:
         if self.ID == 2:
             resource_manage.resouse.spri_wheel_bullut.clip_composite_draw(0,20,30,30,0,'h',self.x,self.y,30,30)
             self.round = 15
-            self.damage = 10
+            self.damage = 20
 
     def update(self):
         if self.ID == 1:
-            self.x += self.velocity / 2
+            self.x += RUN_SPEED_PPS * game_framework.frame_time
         if self.ID == 2:
             if self.paturn == 0:
-                self.x += self.velocity / 2
+                self.x += self.velocity / 100
             if self.paturn == 1:
                 self.angle += 2
                 self.rad = self.angle * math.pi / 180
 
-                self.base_x += self.velocity / 2
+                self.base_x += self.velocity / 100
 
                 self.circle_x = 30 * math.cos(self.rad)
                 self.circle_y = 30 * math.sin(self.rad)
@@ -64,7 +78,7 @@ class Bullet:
             if self.paturn == 2:
                 self.angle += 2
                 self.rad = self.angle * math.pi / 180
-                self.base_x += self.velocity / 2
+                self.base_x += self.velocity / 100
 
                 self.circle_x = 30 * math.cos(self.rad)
 
@@ -73,7 +87,7 @@ class Bullet:
                 self.angle += 2
                 self.rad = self.angle * math.pi / 180
 
-                self.x += self.velocity / 2 * math.cos(self.rad) + self.velocity
+                self.x += (self.velocity / 100) * math.cos(self.rad) + (self.velocity / 100)
 
 
 

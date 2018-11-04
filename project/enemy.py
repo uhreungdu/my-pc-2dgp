@@ -7,11 +7,18 @@ import random
 import main_game
 from bullet import Bullet
 
-PIXEL_PER_METER = (1.0 / 0.3)
+PIXEL_PER_METER = (10.0 / 0.3)
 RUN_SPEED_KMPH = 10
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+
+
+
+Bullet_SPEED_KMPH = 0.1
+Bullet_SPEED_MPM = (Bullet_SPEED_KMPH * 1000.0 / 60.0)
+Bullet_SPEED_MPS = (Bullet_SPEED_MPM / 60.0)
+Bullet_SPEED_PPS = (Bullet_SPEED_MPS * PIXEL_PER_METER)
 
 # Boy Action Speed
 # fill expressions correctly
@@ -42,10 +49,9 @@ class Wheel:
 
         if self.velocity > 10 and self.popup == 0:
             #self.paturn = random.randint(0, 3)
-            self.x -= 0.5
+            self.x -= RUN_SPEED_PPS * game_framework.frame_time
             if self.x <= 900:
                 self.popup = 1
-                self.x += 0
         if self.popup == 1:
             self.x += 0
             self.count += 0.5
@@ -53,7 +59,7 @@ class Wheel:
                 if(self.count <= 400):
                     self.fire = True
                 if(self.fire == True):
-                    ball = Bullet(self.x, self.y, -2, 2,self.paturn)
+                    ball = Bullet(self.x, self.y, -RUN_SPEED_PPS, 2,self.paturn)
                     game_world.add_object(ball, 1)
                 else:
                     pass
@@ -62,7 +68,7 @@ class Wheel:
                 self.popup = 2
         if self.popup == 2:
             self.dir = 1
-            self.x += 0.5
+            self.x += RUN_SPEED_PPS * game_framework.frame_time
             if self.x >= 1320:
                 self.popup = 0
                 self.y += random.randint(-200, 150)
