@@ -10,9 +10,8 @@ Game_over_image = None
 def enter():
     global image
     global Game_over_image
-    image = load_image('bg.png')
+    image = load_image('gameover_back_ground.png')
     Game_over_image = load_image('GAMEOVER Banner (doubleres).png')
-    game_world.clear()
 
 
 def exit():
@@ -21,7 +20,6 @@ def exit():
 
     del(Game_over_image)
     del(image)
-    game_world.clear()
 
 def handle_events():
     events = get_events()
@@ -32,7 +30,7 @@ def handle_events():
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                game_framework.change_state(title_state)
+               game_framework.restart_state()
 
 
 def draw():

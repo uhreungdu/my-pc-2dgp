@@ -4,6 +4,7 @@ from pico2d import *
 import game_world
 import resource_manage
 import random
+import main_game
 from bullet import Bullet
 
 PIXEL_PER_METER = (1.0 / 0.3)
@@ -28,7 +29,7 @@ class Wheel:
         self.x, self.y = 1350, 500 + random.randint(-100, 100)
         self.velocity = 0
         self.frame = 0
-        self.popup = True
+        self.popup = 0
         self.fire = False
         self.cur_time = game_framework.frame_time
         self.count = 0
@@ -37,12 +38,12 @@ class Wheel:
 
     def update(self):
         self.velocity += 0.05
-        if self.velocity > 10 and self.popup == True:
+        if self.velocity > 10 and self.popup == 0:
             self.x -= 0.5
             if self.x <= 900:
-                self.popup = False
+                self.popup = 1
                 self.x += 0
-        if self.popup == False:
+        if self.popup == 1:
             self.x += 0
             self.count += 0.5
             if((self.count) % 50 == 0):
@@ -55,14 +56,17 @@ class Wheel:
                     pass
             if((self.count) >= 400):
                 self.fire = False
-                self.dir = 1
-                self.x += 0.5
-                if self.x >= 1350:
-                    self.popup = True
-                    self.y += random.randint(-200,200)
-                    self.count = 0
-                    self.velocity = 0
-                    self.dir = 0
+                self.popup = 2
+        if self.popup == 2:
+            self.dir = 1
+            self.x += 0.5
+            if self.x >= 1320:
+                self.popup = 0
+                self.y += random.randint(-200, 200)
+                self.count = 0
+                self.velocity = 0
+                self.dir = 0
+
 
 
 

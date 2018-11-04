@@ -13,8 +13,9 @@ play = None
 wheel_enemy = None
 wheel_enemy2 = None
 wheel_enemy3 = None
-shoot_count = 0
+wave_count = 0
 stage = None
+
 
 def enter():
     global play
@@ -36,7 +37,9 @@ def enter():
 
 
 def exit():
+    global wave_count
     game_world.clear()
+    wave_count = 0
 
 def pause():
     pass
@@ -56,8 +59,15 @@ def handle_events():
 
 
 def update():
+    global wave_count
     for game_object in game_world.all_objects():
         game_object.update()
+    if play.hp == 0:
+        game_world.remove_object(play)
+        game_framework.change_state(game_over)
+    if wheel_enemy.popup == 2 and wheel_enemy.x >= 1315:
+        wave_count += 1
+
 
 
 
@@ -65,8 +75,6 @@ def draw():
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
-    if play.hp == 0:
-        game_world.remove_object(play)
-        #game_framework.change_state(game_over)
+
     update_canvas()
 

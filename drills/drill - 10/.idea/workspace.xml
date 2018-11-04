@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7be35f8c-43eb-4a96-ab29-323f8421a038" name="Default Changelist" comment="" />
+    <list default="true" id="7be35f8c-43eb-4a96-ab29-323f8421a038" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/Stage_background.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/Stage_background.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/bullet.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/bullet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/charater.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/charater.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/game_framework.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/game_framework.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/game_over.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/game_over.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/main_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/main_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/title_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/title_state.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,10 +21,11 @@
     <session id="-1886510542">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="6" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -46,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lecture09/pause_state.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="368">
-              <caret line="95" column="18" lean-forward="true" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+              <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -80,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lecture09/main_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="387">
+              <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -100,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lecture09/title_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
+            <state relative-caret-position="513">
               <caret line="29" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -157,7 +167,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../drill - 12" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -240,7 +250,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -267,11 +276,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Lecture09/main_state.py</url>
-          <line>21</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Lecture09/pause_state.py</url>
           <line>17</line>
@@ -307,18 +311,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lecture09/main_state.py">
+    <entry file="file://$PROJECT_DIR$/Lecture09/pause.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lecture09/title_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="513">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lecture09/pause.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Lecture09/mygame.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -330,22 +334,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lecture09/title_state.py">
+    <entry file="file://$PROJECT_DIR$/Lecture09/pause_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="368">
+          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lecture09/pause_state.py">
+    <entry file="file://$PROJECT_DIR$/Lecture09/main_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="95" column="18" lean-forward="true" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+        <state relative-caret-position="387">
+          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

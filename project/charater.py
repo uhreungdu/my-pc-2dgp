@@ -98,6 +98,7 @@ class player:
         self.frame = 0
         self.round = 0
         self.opacity = 1
+        self.power = 10
         self.event_que = []
         self.cur_state = PlayState
         self.cur_state.enter(self, None)
@@ -108,7 +109,6 @@ class player:
     def fire_shoting(self):
         ball = Bullet(self.x, self.y, 10, 1)
         game_world.add_object(ball,1)
-
 
     def update(self):
         self.cur_state.do(self)

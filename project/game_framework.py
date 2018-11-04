@@ -52,7 +52,11 @@ def change_state(state):
     stack.append(state)
     state.enter()
 
-
+def restart_state():
+    global stack
+    while len(stack) > 1:
+        stack[-1].exit()
+        stack.pop()
 
 def push_state(state):
     global stack

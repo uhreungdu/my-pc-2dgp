@@ -9,7 +9,7 @@ import main_game
 class Bullet:
     image = None
 
-    def __init__(self, x = 400, y = 300, velocity = 1, ID = 1):
+    def __init__(self, x = 400, y = 300, velocity = 1, ID = 1, paturn = 0):
         self.ID = ID
         if Bullet.image == None:
             if self.ID == 1:
@@ -64,7 +64,6 @@ class Bullet:
             if( self.length < self.round + main_game.play.round):
                 game_world.remove_object(self)
                 main_game.play.hp -= self.damage
-
 
 
 
