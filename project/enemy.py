@@ -8,7 +8,7 @@ import main_game
 from bullet import Bullet
 
 PIXEL_PER_METER = (10.0 / 0.3)
-RUN_SPEED_KMPH = 10
+RUN_SPEED_KMPH = 15
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -38,7 +38,9 @@ class Wheel:
         self.frame = 0
         self.popup = 0
         self.fire = False
-        self.cur_time = game_framework.frame_time
+        self.cur_time = get_time()
+        self.now_time = get_time()
+        self.second_time = 0
         self.count = 0
         self.dir = 0
         self.paturn = 0
@@ -46,26 +48,35 @@ class Wheel:
 
     def update(self):
         self.velocity += 0.05
-
-        if self.velocity > 10 and self.popup == 0:
-            #self.paturn = random.randint(0, 3)
+        self.now_time = get_time()
+        if (self.now_time - self.cur_time) > 2 and self.popup == 0:
             self.x -= RUN_SPEED_PPS * game_framework.frame_time
             if self.x <= 900:
+                self.second_time = get_time()
+                self.cur_time = get_time()
                 self.popup = 1
+
         if self.popup == 1:
             self.x += 0
             self.count += 0.5
-            if((self.count) % 50 == 0):
-                if(self.count <= 400):
-                    self.fire = True
-                if(self.fire == True):
-                    ball = Bullet(self.x, self.y, -RUN_SPEED_PPS, 2,self.paturn)
-                    game_world.add_object(ball, 1)
-                else:
-                    pass
-            if((self.count) >= 400):
-                self.fire = False
+
+            if (self.now_time - self.second_time) >= 0.25:
+                ball = Bullet(self.x, self.y, -RUN_SPEED_PPS, 2, self.paturn)
+                game_world.add_object(ball, 1)
+                self.second_time = get_time()
+            if (self.now_time - self.cur_time) >= 2:
                 self.popup = 2
+            #if((self.count) % 50 == 0):
+            #    if(self.count <= 400):
+            #        self.fire = True
+            #    if(self.fire == True):
+            #        ball = Bullet(self.x, self.y, -RUN_SPEED_PPS, 2,self.paturn)
+            #        game_world.add_object(ball, 1)
+            #    else:
+            #        pass
+            #if((self.count) >= 400):
+            #    self.fire = False
+            #    self.popup = 2
         if self.popup == 2:
             self.dir = 1
             self.x += RUN_SPEED_PPS * game_framework.frame_time

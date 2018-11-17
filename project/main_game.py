@@ -15,7 +15,8 @@ wheel_enemy2 = None
 wheel_enemy3 = None
 wave_count = 0
 stage = None
-
+wave_time = 0
+wave_now_time = 0
 
 def enter():
     global play
@@ -23,6 +24,8 @@ def enter():
     global wheel_enemy2
     global wheel_enemy3
     global stage
+    global wave_time
+    global wave_now_time
     play = player()
     wheel_enemy = Wheel()
     wheel_enemy2 = Wheel()
@@ -33,6 +36,8 @@ def enter():
     game_world.add_object(wheel_enemy2, 1)
     game_world.add_object(wheel_enemy3, 1)
     game_world.add_object(stage, 0)
+    wave_time = get_time()
+    wave_now_time = get_time()
 
 
 
@@ -60,13 +65,19 @@ def handle_events():
 
 def update():
     global wave_count
+    global wave_now_time
+    global wave_time
     for game_object in game_world.all_objects():
         game_object.update()
-    if play.hp == 0:
+    if play.hp <= 0:
         game_world.remove_object(play)
         game_framework.change_state(game_over)
-    if wheel_enemy.popup == 2 and wheel_enemy.x >= 1340:
-        wave_count += 0.5
+
+    wave_now_time = get_time()
+
+    if(wave_now_time - wave_time) >= 9 and play.hp > 0:
+        wave_count += 10
+        wave_time = get_time()
 
 
 
