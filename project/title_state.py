@@ -7,17 +7,25 @@ image = None
 title_font = None
 title_frame = None
 start_button = None
+effect_left = None
+effect_right = None
+effect_frame = 0
 
 def enter():
     global image
     global title_font
     global title_frame
     global start_button
-    image = load_image('title_state.png')
+    global effect_left
+    global effect_right
+    global effect_frame
+    image = load_image('resource_image\\title_state.png')
     title_font = load_font('Gilbert Bold-Preview_1004.otf', 200)
-    title_frame = load_image('Info.png')
-    start_button = load_image('Start.png')
-
+    title_frame = load_image('resource_image\\Info.png')
+    start_button = load_image('resource_image\\Start.png')
+    effect_left = load_image('resource_image\\effect.png')
+    effect_right = load_image('resource_image\\effect_r.png')
+    effect_frame = 0
 
 def exit():
     global image
@@ -44,7 +52,10 @@ def handle_events():
 def draw():
     clear_canvas()
     image.draw(1280 / 2, 1024 / 2)
+    effect_left.clip_draw(effect_frame * 200, 0, 200, 448, 250, 0, 500, 896)
+    effect_right.clip_draw(effect_frame * 200, 0, 200, 448, 1050, 0, 500, 896)
     title_font.draw(250, 650, 'Never Die',(255,255,255))
+
     start_button.draw(1280/2, 300)
     update_canvas()
 
@@ -55,7 +66,8 @@ def draw():
 
 
 def update():
-    pass
+    global effect_frame
+    effect_frame = (effect_frame + 1) % 8
 
 
 def pause():

@@ -6,6 +6,7 @@ import game_framework
 import game_world
 import random
 import game_over
+import boss_stage
 
 name = "MainGame"
 
@@ -72,12 +73,14 @@ def update():
     if play.hp <= 0:
         game_world.remove_object(play)
         game_framework.change_state(game_over)
-
     wave_now_time = get_time()
 
     if(wave_now_time - wave_time) >= 9 and play.hp > 0:
-        wave_count += 10
+        wave_count += 50
         wave_time = get_time()
+
+    if wave_count >= 100:
+        game_framework.change_state(boss_stage)
 
 
 
