@@ -78,7 +78,7 @@ def update():
     wave_now_time = get_time()
 
     if(wave_now_time - wave_time) >= 9 and play.hp > 0:
-        wave_count += 50
+        wave_count += 100
         wave_time = get_time()
 
     if wave_count >= 100:

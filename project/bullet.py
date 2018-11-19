@@ -39,6 +39,10 @@ class Bullet:
         self.rad = 0
         self.base_x = x
         self.base_y = y
+
+        self.cur_time = get_time()
+        self.spread_time = get_time()
+
         self.circle_x = 0
         self.circle_y = 0
         self.damage = 0
@@ -47,6 +51,8 @@ class Bullet:
         self.deltaY = 0
         self.length = 0
         self.paturn = paturn
+        self.type = 0
+        self.check = True
 
 
 
@@ -55,11 +61,12 @@ class Bullet:
             resource_manage.resouse.spri_bullut.clip_draw(113, 120, 40, 20, self.x, self.y)
             self.damage = main_game.play.power
         if self.ID == 2:
-            resource_manage.resouse.spri_wheel_bullut.clip_composite_draw(0,20,30,30,0,'h',self.x,self.y,30,30)
+            resource_manage.resouse.spri_wheel_bullut.clip_composite_draw(0,20,30,30,45,'h',self.x,self.y,30,30)
             self.round = 15
             self.damage = 20
 
     def update(self):
+        self.cur_time = get_time()
         if self.ID == 1:
             self.x += RUN_SPEED_PPS * game_framework.frame_time
 
@@ -69,7 +76,8 @@ class Bullet:
             self.length = math.sqrt(self.deltaX * self.deltaX + self.deltaY * self.deltaY)
 
             if (self.length < self.round + boss_stage.wizard_boss.round):
-                boss_stage.wizard_boss.hp -= self.damage
+                if boss_stage.wizard_boss.immortal == False:
+                    boss_stage.wizard_boss.hp -= self.damage
                 game_world.remove_object(self)
                 print(boss_stage.wizard_boss.hp)
 
@@ -112,7 +120,6 @@ class Bullet:
             if( self.length < self.round + main_game.play.round):
                 game_world.remove_object(self)
                 main_game.play.hp -= self.damage
-
 
 
         if self.x < 50 or self.x > 1280 - 50:

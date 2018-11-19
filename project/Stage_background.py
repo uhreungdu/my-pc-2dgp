@@ -32,7 +32,7 @@ class Stage:
         self.font.draw(20, 970,'HP : %d' % main_game.play.hp,(255,255,255))
         self.font.draw(20, 920, 'Damge : %d' % main_game.play.power, (255, 255, 255))
         self.font.draw(750, 920, 'Gauge : %d' % main_game.wave_count, (255, 255, 255))
-        #self.gauge_bar.draw(750,920)
-        #self.gauge_bar.clip_draw(0,0,50,26,)
+        self.gauge_bar.draw(750,920)
+        #self.gauge_bar.clip_draw(0,0,50,26)
     def update(self):
        pass

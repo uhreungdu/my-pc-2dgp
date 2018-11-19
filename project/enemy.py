@@ -66,17 +66,6 @@ class Wheel:
                 self.second_time = get_time()
             if (self.now_time - self.cur_time) >= 2:
                 self.popup = 2
-            #if((self.count) % 50 == 0):
-            #    if(self.count <= 400):
-            #        self.fire = True
-            #    if(self.fire == True):
-            #        ball = Bullet(self.x, self.y, -RUN_SPEED_PPS, 2,self.paturn)
-            #        game_world.add_object(ball, 1)
-            #    else:
-            #        pass
-            #if((self.count) >= 400):
-            #    self.fire = False
-            #    self.popup = 2
         if self.popup == 2:
             self.dir = 1
             self.x += RUN_SPEED_PPS * game_framework.frame_time

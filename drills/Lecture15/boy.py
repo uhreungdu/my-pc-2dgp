@@ -69,7 +69,9 @@ class WalkingState:
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
         boy.x += boy.x_velocity * game_framework.frame_time
         boy.y += boy.y_velocity * game_framework.frame_time
-        boy.x = clamp(50, boy.x, boy.bg.w-50)
+        boy.lean = ((boy.bg.h - 25) - 75) / ((boy.bg.w - 50) - 50)
+        boy.y_intercept = 75 - boy.lean * 50
+        boy.x = clamp(boy.y / 9, boy.x, boy.bg.w - boy.y / 9)
         boy.y = clamp(75, boy.y, boy.bg.h-25)
         # fill here
 
@@ -120,6 +122,8 @@ class Boy:
         self.event_que = []
         self.cur_state = WalkingState
         self.cur_state.enter(self, None)
+        self.lean = 0
+        self.y_intercept = 0
 
     def get_bb(self):
         return self.x - 50, self.y - 50, self.x + 50, self.y + 50
@@ -143,7 +147,7 @@ class Boy:
 
     def draw(self):
         self.cur_state.draw(self)
-        self.font.draw(self.x - self.bg.window_left - 60, self.y - self.bg.window_bottom + 50, '(%5d, %5d)' % (self.x, self.y), (255, 255, 0))
+        self.font.draw(self.x - self.bg.window_left -60, self.y - self.bg.window_bottom, '(%5d, %5d)' % (self.x, self.y), (255, 255, 0))
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:

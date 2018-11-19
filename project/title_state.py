@@ -11,6 +11,10 @@ effect_left = None
 effect_right = None
 effect_frame = 0
 
+TIME_PER_ACTION = 0.5
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+FRAMES_PER_ACTION = 8
+
 def enter():
     global image
     global title_font
@@ -52,8 +56,8 @@ def handle_events():
 def draw():
     clear_canvas()
     image.draw(1280 / 2, 1024 / 2)
-    effect_left.clip_draw(effect_frame * 200, 0, 200, 448, 250, 0, 500, 896)
-    effect_right.clip_draw(effect_frame * 200, 0, 200, 448, 1050, 0, 500, 896)
+    effect_left.clip_draw(int(effect_frame) * 200, 0, 200, 448, 250, 0, 500, 896)
+    effect_right.clip_draw(int(effect_frame) * 200, 0, 200, 448, 1050, 0, 500, 896)
     title_font.draw(250, 650, 'Never Die',(255,255,255))
 
     start_button.draw(1280/2, 300)
@@ -67,7 +71,7 @@ def draw():
 
 def update():
     global effect_frame
-    effect_frame = (effect_frame + 1) % 8
+    effect_frame = (effect_frame +  FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
 
 
 def pause():
