@@ -3,10 +3,7 @@ from pico2d import *
 
 import game_world
 import resource_manage
-import random
-import boss_stage
 import main_game
-from bullet import Bullet
 
 PIXEL_PER_METER = (10.0 / 0.3)
 RUN_SPEED_KMPH = 15
@@ -35,7 +32,7 @@ class Wizard:
         if Wizard.image == None:
             Wizard.image = resource_manage.resouse.spri_wizard_boss
         self.x, self.y = 1100, 500
-        self.hp = main_game.wave_count * 10
+        self.hp = 1000
         self.frame = 0
         self.cur_time = get_time()
         self.now_time = get_time()
@@ -43,6 +40,7 @@ class Wizard:
         self.count = 0
         self.dir = 0
         self.paturn = 0
+        self.round = 100
 
 
     def update(self):

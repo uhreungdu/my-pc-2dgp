@@ -4,6 +4,7 @@ import game_world
 import resource_manage
 import math
 import main_game
+import boss_stage
 import random
 
 PIXEL_PER_METER = (10.0 / 0.3)
@@ -52,6 +53,7 @@ class Bullet:
     def draw(self):
         if self.ID == 1:
             resource_manage.resouse.spri_bullut.clip_draw(113, 120, 40, 20, self.x, self.y)
+            self.damage = main_game.play.power
         if self.ID == 2:
             resource_manage.resouse.spri_wheel_bullut.clip_composite_draw(0,20,30,30,0,'h',self.x,self.y,30,30)
             self.round = 15
@@ -60,6 +62,17 @@ class Bullet:
     def update(self):
         if self.ID == 1:
             self.x += RUN_SPEED_PPS * game_framework.frame_time
+
+            self.deltaX = self.x - boss_stage.wizard_boss.x
+            self.deltaY = self.y - boss_stage.wizard_boss.y
+
+            self.length = math.sqrt(self.deltaX * self.deltaX + self.deltaY * self.deltaY)
+
+            if (self.length < self.round + boss_stage.wizard_boss.round):
+                boss_stage.wizard_boss.hp -= self.damage
+                game_world.remove_object(self)
+                print(boss_stage.wizard_boss.hp)
+
         if self.ID == 2:
             if self.paturn == 0:
                 self.x += self.velocity / 100

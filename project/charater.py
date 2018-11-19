@@ -77,7 +77,7 @@ class PlayState:
 
     @staticmethod
     def draw(play):
-        play.character.clip_draw(0, 150, 60, 50, play.x, play.y)
+        play.character.clip_draw(0, 150, 60, 50, play.x, play.y,60,75)
         play.character.opacify(play.opacity)
 
 
@@ -103,13 +103,15 @@ class player:
         self.event_que = []
         self.cur_state = PlayState
         self.cur_state.enter(self, None)
+        self.attack_mode = False
 
     def add_event(self, event):
         self.event_que.insert(0, event)
 
     def fire_shoting(self):
-        ball = Bullet(self.x, self.y, 10, 1,0)
-        game_world.add_object(ball,1)
+        if self.attack_mode == True:
+            ball = Bullet(self.x, self.y, 10, 1, 0)
+            game_world.add_object(ball, 1)
 
     def update(self):
         self.cur_state.do(self)

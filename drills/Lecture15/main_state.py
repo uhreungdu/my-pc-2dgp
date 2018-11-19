@@ -1,35 +1,48 @@
+import random
+import json
+import os
+
 from pico2d import *
 import game_framework
-#from charater import player
-from boss_enemy import Wizard
 import game_world
-import game_over
-import main_game
+
+from boy import Boy
+from background import FixedBackground as Background
+#from background import InfiniteBackground as Background
+# fill here
 
 
-play = None
-wizard_boss = None
+name = "MainState"
 
+boy = None
+background = None
 
 
 def enter():
-    global play
-    global wizard_boss
-    play = main_game.play
-    wizard_boss = Wizard()
-    game_world.add_object(play, 1)
-    game_world.add_object(wizard_boss,1)
+    global boy
+    boy = Boy()
+    game_world.add_object(boy, 1)
+
+    global background
+    background = Background()
+    game_world.add_object(background, 0)
+
+    background.set_center_object(boy)
+    boy.set_background(background)
+    # fill here
+
+
 
 def exit():
-    global wave_count
     game_world.clear()
-    wave_count = 0
 
 def pause():
     pass
 
+
 def resume():
     pass
+
 
 def handle_events():
     events = get_events()
@@ -37,24 +50,24 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.pop_state()
+                game_framework.quit()
         else:
-            play.handle_event(event)
+            boy.handle_event(event)
 
 
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
-    if play.hp <= 0:
-        game_world.remove_object(play)
-        game_framework.change_state(game_over)
-
-
 
 
 def draw():
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
-
     update_canvas()
+
+
+
+
+
+

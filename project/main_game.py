@@ -37,6 +37,7 @@ def enter():
     game_world.add_object(wheel_enemy2, 1)
     game_world.add_object(wheel_enemy3, 1)
     game_world.add_object(stage, 0)
+    play.attack_mode = False
     wave_time = get_time()
     wave_now_time = get_time()
 
@@ -68,6 +69,7 @@ def update():
     global wave_count
     global wave_now_time
     global wave_time
+    global play
     for game_object in game_world.all_objects():
         game_object.update()
     if play.hp <= 0:
@@ -80,6 +82,7 @@ def update():
         wave_time = get_time()
 
     if wave_count >= 100:
+        play.attack_mode = True
         game_framework.change_state(boss_stage)
 
 
