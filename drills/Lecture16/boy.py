@@ -124,9 +124,11 @@ class Boy:
         # fill heree
         self.eat_sound = load_wav('pickup.wav')
         self.eat_sound.set_volume(32)
+        self.ball_count = 0
 
     def eat(self, ball):
         self.eat_sound.play()
+        self.ball_count += 1
         # fill here
         pass
 
@@ -140,8 +142,8 @@ class Boy:
 
 
     def get_bb(self):
-        return self.x - self.bg.window_left - 50, self.y - self.bg.window_bottom - 50, \
-               self.x - self.bg.window_left + 50, self.y - self.bg.window_bottom + 50
+        return self.x - self.bg.window_left - 30, self.y - self.bg.window_bottom - 40, \
+               self.x - self.bg.window_left + 30, self.y - self.bg.window_bottom + 40
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -156,7 +158,7 @@ class Boy:
 
     def draw(self):
         self.cur_state.draw(self)
-        self.font.draw(self.x - self.bg.window_left -60, self.y - self.bg.window_bottom + 50, '(%5d, %5d)' % (self.x, self.y), (255, 255, 0))
+        self.font.draw(self.x - self.bg.window_left - 20, self.y - self.bg.window_bottom + 50, '(%2d)' % self.ball_count , (255, 255, 0))
         #fill here
         draw_rectangle(*self.get_bb())
         #debug_print('Velocity :' + str(self.velocity) + '  Dir:' + str(self.dir) + ' Frame Time:' + str(game_framework.frame_time))

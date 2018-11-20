@@ -10,8 +10,8 @@ class Ball:
     def __init__(self):
         if Ball.image == None:
             Ball.image = load_image('ball21x21.png')
-        self.x, self.y, self.fall_speed = random.randint(0, get_canvas_width() - 50),\
-                                          random.randint(0, get_canvas_height() - 50), 0
+        self.x, self.y, self.fall_speed = random.randint(50, 1800 - 50),\
+                                          random.randint(20, 1100 - 50), 0
 
     def get_bb(self):
         return self.x - 10, self.y - 10, self.x + 10, self.y + 10
