@@ -50,7 +50,7 @@ class Boss_wave:
 
     def draw(self):
         if self.y <= 850:
-            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 1102, 1074, self.x, self.y, 50,
+            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 485, 483, self.x, self.y, 50,
                                                                              50)
 
 
@@ -68,9 +68,9 @@ class Boss_wave:
                 game_world.add_object(up_type, 1)
                 self.type = 0
         if self.paturn == 1:
-            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 1102, 1074, self.x, self.y- 100, 50,
+            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 485, 483, self.x, self.y - 100, 50,
                                                                              50)
-            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 1102, 1074, self.x, self.y + 100, 50,
+            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 485, 483, self.x, self.y + 100, 50,
                                                                              50)
 
 
