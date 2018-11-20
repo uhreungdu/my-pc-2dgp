@@ -14,7 +14,7 @@ name = "MainState"
 boy = None
 balls = []
 background = None
-
+#최종완성
 def collide(a, b):
     # fill here
     left_a, bottom_a, right_a, top_a = a.get_bb()
