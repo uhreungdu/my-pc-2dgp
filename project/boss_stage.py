@@ -5,20 +5,23 @@ from boss_enemy import Wizard
 import game_world
 import game_over
 import main_game
-
+from wizard_boss_stage_background import Stage
 
 play = None
 wizard_boss = None
-
+stage = None
 
 
 def enter():
     global play
     global wizard_boss
+    global stage
     play = main_game.play
     wizard_boss = Wizard()
+    stage = Stage()
     game_world.add_object(play, 1)
     game_world.add_object(wizard_boss,1)
+    game_world.add_object(stage,0)
 
 def exit():
     global wave_count

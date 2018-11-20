@@ -1,8 +1,8 @@
 import game_framework
 from pico2d import *
+from ball import Ball
 
 import game_world
-from ball import Ball
 
 # Boy Run Speed
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
@@ -108,9 +108,7 @@ next_state_table = {
                 SPACE: WalkingState}
 }
 
-
 class Boy:
-
     def __init__(self):
         self.canvas_width = get_canvas_width()
         self.canvas_height = get_canvas_height()
@@ -123,17 +121,27 @@ class Boy:
         self.event_que = []
         self.cur_state = WalkingState
         self.cur_state.enter(self, None)
-        self.lean = 0
-        self.y_intercept = 0
+        # fill heree
+        self.eat_sound = load_wav('pickup.wav')
+        self.eat_sound.set_volume(32)
 
-    def get_bb(self):
-        return self.x - 50, self.y - 50, self.x + 50, self.y + 50
+    def eat(self, ball):
+        self.eat_sound.play()
+        # fill here
+        pass
+
+
 
 
     def set_background(self, bg):
         self.bg = bg
         self.x = self.bg.w / 2
         self.y = self.bg.h / 2
+
+
+    def get_bb(self):
+        return self.x - self.bg.window_left - 50, self.y - self.bg.window_bottom - 50, \
+               self.x - self.bg.window_left + 50, self.y - self.bg.window_bottom + 50
 
     def add_event(self, event):
         self.event_que.insert(0, event)
@@ -148,7 +156,10 @@ class Boy:
 
     def draw(self):
         self.cur_state.draw(self)
-        self.font.draw(self.x - self.bg.window_left -60, self.y - self.bg.window_bottom, '(%5d, %5d)' % (self.x, self.y), (255, 255, 0))
+        self.font.draw(self.x - self.bg.window_left -60, self.y - self.bg.window_bottom + 50, '(%5d, %5d)' % (self.x, self.y), (255, 255, 0))
+        #fill here
+        draw_rectangle(*self.get_bb())
+        #debug_print('Velocity :' + str(self.velocity) + '  Dir:' + str(self.dir) + ' Frame Time:' + str(game_framework.frame_time))
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:

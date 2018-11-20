@@ -49,8 +49,10 @@ class Boss_wave:
 
 
     def draw(self):
-        resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 1102, 1074, self.x, self.y, 50,
-                                                                         50)
+        if self.y <= 850:
+            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 1102, 1074, self.x, self.y, 50,
+                                                                             50)
+
 
         if self.type == 1:
             if self.ID == 1:
