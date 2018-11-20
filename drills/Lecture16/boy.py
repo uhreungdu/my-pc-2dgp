@@ -72,8 +72,8 @@ class WalkingState:
         boy.y += boy.y_velocity * game_framework.frame_time
         boy.lean = ((boy.bg.h - 25) - 75) / ((boy.bg.w - 50) - 50)
         boy.y_intercept = 75 - boy.lean * 50
-        boy.x = clamp(boy.y / 5, boy.x, boy.bg.w - boy.y / 5)
-        boy.y = clamp(75, boy.y, boy.bg.h-25)
+        boy.x = clamp(50, boy.x, 1837 - 50)
+        boy.y = clamp(25, boy.y, 1109 -25)
         # fill here
 
 
