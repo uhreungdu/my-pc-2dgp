@@ -19,7 +19,7 @@ TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
 
-
+count = 0
 
 class Boss_wave:
     image = None
@@ -49,33 +49,32 @@ class Boss_wave:
 
 
     def draw(self):
+        global  count
         if self.y <= 850:
             resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 485, 483, self.x, self.y, 50,
                                                                              50)
 
 
-        if self.type == 1:
-            if self.ID == 1:
-                up_type = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 2)
-                game_world.add_object(up_type, 1)
-                down_type = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 3)
-                game_world.add_object(down_type, 1)
-                self.type = 0
-            if self.ID == 2:
-                self.type = 0
-            if self.ID == 3:
-                up_type = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 2)
-                game_world.add_object(up_type, 1)
-                self.type = 0
-        if self.paturn == 1:
-            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 485, 483, self.x, self.y - 100, 50,
-                                                                             50)
-            resource_manage.resouse.spri_wizard_boss_attack_phase1.clip_draw(0, 0, 485, 483, self.x, self.y + 100, 50,
-                                                                             50)
+        if self.paturn == 0:
+            if self.type == 1:
+                if self.ID == 1:
+                    up_type = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 2)
+                    game_world.add_object(up_type, 1)
+                    down_type = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 3)
+                    game_world.add_object(down_type, 1)
+                    self.type = 0
+                if self.ID == 2:
+                    self.type = 0
+                if self.ID == 3:
+                    up_type = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 2)
+                    game_world.add_object(up_type, 1)
+                    self.type = 0
 
 
 
-        self.round = 50
+
+
+        self.round = 25
         self.damage = 20
     def update(self):
         self.cur_time = get_time()
@@ -100,8 +99,6 @@ class Boss_wave:
         if self.paturn == 1:
             if self.ID == 1:
                 self.x -= RUN_SPEED_PPS * game_framework.frame_time * 0.5
-                self.type = 2
-
 
 
         #충돌체크
@@ -111,6 +108,7 @@ class Boss_wave:
         self.length = math.sqrt(self.deltaX * self.deltaX + self.deltaY * self.deltaY)
 
         if (self.length < self.round + main_game.play.round):
+            print('cr')
             game_world.remove_object(self)
             main_game.play.hp -= self.damage
 

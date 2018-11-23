@@ -61,8 +61,12 @@ class Wizard:
         if (self.now_time - self.cur_time) >= 0 and (self.now_time - self.cur_time) <= 5:
             self.immortal = True
             if (self.now_time - self.second_time) >= 0.25:
-                ball = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 1, 1)
-                game_world.add_object(ball, 1)
+                ball_up = Boss_wave(self.x, self.y + 100, -RUN_SPEED_PPS, 1, 1)
+                game_world.add_object(ball_up, 1)
+                ball_mid = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 1, 1)
+                game_world.add_object(ball_mid, 1)
+                ball_bottom = Boss_wave(self.x, self.y - 100, -RUN_SPEED_PPS, 1, 1)
+                game_world.add_object(ball_bottom, 1)
                 self.second_time = get_time()
 
         if (self.now_time - self.cur_time) >= 4 and (self.now_time - self.cur_time) <= 12:
@@ -75,7 +79,11 @@ class Wizard:
                 game_world.add_object(ball, 1)
                 self.second_time = get_time()
 
+        if (self.now_time - self.cur_time) >= 14 and (self.now_time - self.cur_time) <= 22:
+            self.immortal = False
 
+        if (self.now_time - self.cur_time) >= 20 and (self.now_time - self.cur_time) <= 25:
+            self.immortal = True
 
         pass
 
