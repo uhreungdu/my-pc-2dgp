@@ -8,6 +8,7 @@ import random
 import game_over
 import boss_stage
 
+
 name = "MainGame"
 
 play = None
@@ -18,7 +19,7 @@ wave_count = 0
 stage = None
 wave_time = 0
 wave_now_time = 0
-
+wheel_enemys = []
 def enter():
     global play
     global wheel_enemy
@@ -27,15 +28,19 @@ def enter():
     global stage
     global wave_time
     global wave_now_time
+    global wheel_enemys
     play = player()
-    wheel_enemy = Wheel()
-    wheel_enemy2 = Wheel()
-    wheel_enemy3 = Wheel()
+    #wheel_enemy = Wheel()
+    #wheel_enemy2 = Wheel()
+    #wheel_enemy3 = Wheel()
+    wheel_enemys = [Wheel() for i in range(5)]
     stage = Stage()
     game_world.add_object(play, 1)
-    game_world.add_object(wheel_enemy, 1)
-    game_world.add_object(wheel_enemy2, 1)
-    game_world.add_object(wheel_enemy3, 1)
+    #game_world.add_object(wheel_enemy, 1)
+    #game_world.add_object(wheel_enemy2, 1)
+    #game_world.add_object(wheel_enemy3, 1)
+    for wheel in wheel_enemys:
+        game_world.add_object(wheel,1)
     game_world.add_object(stage, 0)
     play.attack_mode = False
     wave_time = get_time()
@@ -78,10 +83,10 @@ def update():
     wave_now_time = get_time()
 
     if(wave_now_time - wave_time) >= 9 and play.hp > 0:
-        wave_count += 100
+        wave_count += 1
         wave_time = get_time()
 
-    if wave_count >= 100:
+    if wave_count >= 9:
         play.attack_mode = True
         game_framework.change_state(boss_stage)
 

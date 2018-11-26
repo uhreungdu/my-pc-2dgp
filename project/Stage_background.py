@@ -6,6 +6,7 @@ import main_game
 
 class Stage:
     image = None
+    image_reverse = None
     font = None
     gauge_font = None
     gauge_bar = None
@@ -13,6 +14,8 @@ class Stage:
     state_window = None
     def __init__(self, num = 1):
         self.x, self.y, self.num = 1280 / 2, 1024 / 2, num
+        self.move = 0
+        self.like_scroll = 850
         if Stage.image == None:
             if self.num == 1:
                 Stage.image = load_image('resource_image\\main_stage_back_ground.jpg')\
@@ -32,12 +35,17 @@ class Stage:
 
 
     def draw(self):
-        self.image.draw(self.x, self.y)
+        self.image.draw(self.x + self.like_scroll, self.y)
         self.state_window.clip_draw(0, 0, 400, 92, 1280/2, 940, 1280,175)
-        self.font.draw(25, 970,'HP : %d' % main_game.play.hp,(255,255,255))
-        self.font.draw(25, 920, 'Damge : %d' % main_game.play.power, (255, 255, 255))
-        self.font.draw(750, 920, 'Gauge : %d' % main_game.wave_count, (255, 255, 255))
+        self.font.draw(30, 970,'HP : %d' % main_game.play.hp,(255,0,0))
+        self.font.draw(30, 920, 'Damge : %d' % main_game.play.power, (0, 0, 255))
+        self.font.draw(500, 970, 'BossGauge', (255, 0, 255))
+        if self.move <8:
+            self.gauge_fill.clip_draw(0, 0, 57 * self.move, 26, 452 + (self.move * 38), 920, 72 * self.move + 10, 40)
+        if self.move >= 8:
+            self.gauge_fill.clip_draw(0, 0, 454, 26, 755, 920, 720, 40)
         self.gauge_bar.draw(750,920)
-        #self.gauge_bar.clip_draw(0,0,50,26)
+
     def update(self):
-       pass
+       self.move = main_game.wave_count
+       self.like_scroll -= 0.5

@@ -82,6 +82,7 @@ class Wizard:
         if (self.now_time - self.cur_time) >= 14 and (self.now_time - self.cur_time) <= 22:
             self.immortal = False
 
+
         if (self.now_time - self.cur_time) >= 20 and (self.now_time - self.cur_time) <= 25:
             self.immortal = True
 

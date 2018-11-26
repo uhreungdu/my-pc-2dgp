@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c7b6044-da57-4c4e-b4d5-d1a7ff2a11c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../drill -07/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../drill -07/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/bullet.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/bullet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/charater.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/charater.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/enemy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../project/main_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/main_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/Stage_background.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/Stage_background.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/boss_enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/boss_enemy.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,9 +45,9 @@
     <session id="-1858180741">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
     </session>
@@ -60,7 +57,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lecture08/boy_grass_object.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
+            <state relative-caret-position="380">
               <caret line="62" column="10" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="10" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
@@ -92,6 +89,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -108,7 +106,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -196,7 +193,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Lecture08/boy_grass_object.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
+        <state relative-caret-position="380">
           <caret line="62" column="10" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="10" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
