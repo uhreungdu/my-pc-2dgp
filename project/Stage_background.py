@@ -12,6 +12,7 @@ class Stage:
     gauge_bar = None
     gauge_fill = None
     state_window = None
+    bgm = None
     def __init__(self, num = 1):
         self.x, self.y, self.num = 1280 / 2, 1024 / 2, num
         self.move = 0
@@ -31,6 +32,10 @@ class Stage:
             Stage.gauge_fill = load_image('Danger (stretch).png')
         if Stage.gauge_font == None:
             Stage.gauge_font = load_font('netmarbleB.ttf', 45)
+        if Stage.bgm == None:
+            Stage.bgm = load_music('sound_resource\\[SDVX] Nostalgic Blood of the Strife [NOFX].mp3')
+            Stage.bgm.set_volume(64)
+            Stage.bgm.repeat_play()
 
 
 

@@ -10,6 +10,7 @@ start_button = None
 effect_left = None
 effect_right = None
 effect_frame = 0
+bgm = None
 
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
@@ -23,12 +24,16 @@ def enter():
     global effect_left
     global effect_right
     global effect_frame
+    global bgm
     image = load_image('resource_image\\title_state.png')
     title_font = load_font('Gilbert Bold-Preview_1004.otf', 200)
     title_frame = load_image('resource_image\\Info.png')
     start_button = load_image('resource_image\\Start.png')
     effect_left = load_image('resource_image\\effect.png')
     effect_right = load_image('resource_image\\effect_r.png')
+    bgm = load_music('sound_resource\\back_ground.mp3')
+    bgm.set_volume(64)
+    bgm.repeat_play()
     effect_frame = 0
 
 def exit():
