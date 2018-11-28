@@ -17,10 +17,13 @@ class Stage:
         self.x, self.y, self.num = 1280 / 2, 1024 / 2, num
         self.move = 0
         self.like_scroll = 850
+        self.like_scrool_re = 3850
         if Stage.image == None:
             if self.num == 1:
-                Stage.image = load_image('resource_image\\main_stage_back_ground.jpg')\
-
+                Stage.image = load_image('resource_image\\main_stage_back_ground.jpg')
+        if Stage.image_reverse == None:
+            if self.num == 1:
+                Stage.image_reverse = load_image('resource_image\\main_stage_back_ground_reverse.jpg')
         if Stage.state_window == None:
             Stage.state_window = load_image('resource_image\\Info.png')
         if Stage.font == None:
@@ -34,13 +37,14 @@ class Stage:
             Stage.gauge_font = load_font('netmarbleB.ttf', 45)
         if Stage.bgm == None:
             Stage.bgm = load_music('sound_resource\\[SDVX] Nostalgic Blood of the Strife [NOFX].mp3')
-            Stage.bgm.set_volume(64)
+            Stage.bgm.set_volume(0)
             Stage.bgm.repeat_play()
 
 
 
     def draw(self):
         self.image.draw(self.x + self.like_scroll, self.y)
+        self.image_reverse.draw(self.x + self.like_scrool_re,self.y)
         self.state_window.clip_draw(0, 0, 400, 92, 1280/2, 940, 1280,175)
         self.font.draw(30, 970,'HP : %d' % main_game.play.hp,(255,0,0))
         self.font.draw(30, 920, 'Damge : %d' % main_game.play.power, (0, 0, 255))
@@ -53,4 +57,11 @@ class Stage:
 
     def update(self):
        self.move = main_game.wave_count
-       self.like_scroll -= 0.5
+       self.like_scroll -= 1
+       self.like_scrool_re -= 1
+       print(self.x - self.like_scroll)
+       if (self.like_scroll == 850):
+           self.like_scrool_re = 3850
+       if(self.x -self.like_scroll >= 4400):
+           self.like_scroll = 2200
+

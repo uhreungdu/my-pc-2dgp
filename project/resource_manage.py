@@ -24,7 +24,7 @@ class Rm:
         Rm.spri_bullut = load_image('resource_image\\fight_plane.png')
 
         Rm.spri_Wheel_enemy = load_image('resource_image\\Wheel Enemy.png')
-        Rm.spri_wheel_bullut = load_image('resource_image\\Wheel Enemy.png')
+        Rm.spri_wheel_bullut = load_image('resource_image\\wheel_attack.png')
 
         Rm.spri_wizard_boss = load_image('resource_image\\wiard_boss_phase1.png')
         Rm.spri_wizard_boss_attack_phase1 = load_image('resource_image\\attack_circle.png')

@@ -61,7 +61,7 @@ class Bullet:
             resource_manage.resouse.spri_bullut.clip_draw(113, 120, 40, 20, self.x, self.y)
             self.damage = main_game.play.power
         if self.ID == 2:
-            resource_manage.resouse.spri_wheel_bullut.clip_composite_draw(0,20,30,30,45,'h',self.x,self.y,30,30)
+            resource_manage.resouse.spri_wheel_bullut.clip_draw(0,0,116,116,self.x,self.y,30,30)
             self.round = 15
             self.damage = 20
 
