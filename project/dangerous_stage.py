@@ -1,11 +1,10 @@
 from pico2d import *
-from charater import player
-from enemy import Wheel
-from Stage_background import Stage
+from dangerous_line import Line
 import game_framework
 import game_world
-#import main_game
+import main_game
 import boss_stage
+
 
 name = "Dangerous_stage"
 
@@ -18,24 +17,21 @@ stage = None
 wave_time = 0
 wave_now_time = 0
 wheel_enemys = []
-dangerous_image = None
+dangerous_image = []
 
 def enter():
     global play
-    global wheel_enemy
-    global wheel_enemy2
-    global wheel_enemy3
     global stage
     global wave_time
     global wave_now_time
-    global wheel_enemys
-    play = player()
-    wheel_enemys = [Wheel() for i in range(5)]
-    stage = Stage()
+    global dangerous_image
+    play = main_game.play
+    stage = main_game.stage
     game_world.add_object(play, 1)
-    for wheel in wheel_enemys:
-        game_world.add_object(wheel,1)
     game_world.add_object(stage, 0)
+    dangerous_image = [Line(i * 288) for i in range(5)]
+    for line_image in dangerous_image:
+        game_world.add_object(line_image,1)
     play.attack_mode = False
     wave_time = get_time()
     wave_now_time = get_time()
@@ -68,12 +64,11 @@ def update():
     global wave_now_time
     global wave_time
     wave_now_time = get_time()
-    if wave_now_time - wave_time >= 4:
+    if wave_now_time - wave_time >= 10:
         play.attack_mode = True
         game_framework.change_state(boss_stage)
-    pass
-    #for game_object in game_world.all_objects():
-    #    game_object.update()
+    for game_object in game_world.all_objects():
+        game_object.update()
 
 
 
