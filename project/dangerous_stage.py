@@ -4,7 +4,8 @@ from enemy import Wheel
 from Stage_background import Stage
 import game_framework
 import game_world
-import main_game
+#import main_game
+import boss_stage
 
 name = "Dangerous_stage"
 
@@ -64,24 +65,15 @@ def handle_events():
 
 
 def update():
-    global wave_count
     global wave_now_time
     global wave_time
-    global play
-    for game_object in game_world.all_objects():
-        game_object.update()
-    if play.hp <= 0:
-        game_world.remove_object(play)
-        game_framework.change_state(game_over)
     wave_now_time = get_time()
-
-    if(wave_now_time - wave_time) >= 9 and play.hp > 0:
-        wave_count += 1
-        wave_time = get_time()
-
-    if wave_count >= 9:
+    if wave_now_time - wave_time >= 4:
         play.attack_mode = True
         game_framework.change_state(boss_stage)
+    pass
+    #for game_object in game_world.all_objects():
+    #    game_object.update()
 
 
 

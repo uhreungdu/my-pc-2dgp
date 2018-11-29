@@ -6,8 +6,8 @@ import game_framework
 import game_world
 import random
 import game_over
-import boss_stage
-
+#import boss_stage
+import dangerous_stage
 
 name = "MainGame"
 
@@ -30,15 +30,9 @@ def enter():
     global wave_now_time
     global wheel_enemys
     play = player()
-    #wheel_enemy = Wheel()
-    #wheel_enemy2 = Wheel()
-    #wheel_enemy3 = Wheel()
     wheel_enemys = [Wheel() for i in range(5)]
     stage = Stage()
     game_world.add_object(play, 1)
-    #game_world.add_object(wheel_enemy, 1)
-    #game_world.add_object(wheel_enemy2, 1)
-    #game_world.add_object(wheel_enemy3, 1)
     for wheel in wheel_enemys:
         game_world.add_object(wheel,1)
     game_world.add_object(stage, 0)
@@ -83,12 +77,12 @@ def update():
     wave_now_time = get_time()
 
     if(wave_now_time - wave_time) >= 9 and play.hp > 0:
-        wave_count += 1
+        wave_count += 4
         wave_time = get_time()
 
     if wave_count >= 9:
         play.attack_mode = True
-        game_framework.change_state(boss_stage)
+        game_framework.change_state(dangerous_stage)
 
 
 
