@@ -25,6 +25,8 @@ def enter():
 
 def exit():
     global wave_count
+    global stage
+    stage.bgm.stop()
     game_world.clear()
     wave_count = 0
 

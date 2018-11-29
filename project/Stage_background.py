@@ -37,7 +37,7 @@ class Stage:
             Stage.gauge_font = load_font('netmarbleB.ttf', 45)
         if Stage.bgm == None:
             Stage.bgm = load_music('sound_resource\\[SDVX] Nostalgic Blood of the Strife [NOFX].mp3')
-            Stage.bgm.set_volume(0)
+            Stage.bgm.set_volume(50)
             Stage.bgm.repeat_play()
 
 

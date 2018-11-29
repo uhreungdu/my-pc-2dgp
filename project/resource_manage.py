@@ -18,7 +18,9 @@ class Rm:
 
     spri_wizard_boss = None
     spri_wizard_boss_attack_phase1 = None
+    spri_wizard_boss_attack_fake = None
     spri_wizard_boss_immotral_ring = None
+    spri_wizard_boss_last_paturn = None
     def __init__(self):
         Rm.spri_charater = load_image('resource_image\\fight_plane.png')
         Rm.spri_bullut = load_image('resource_image\\fight_plane.png')
@@ -28,6 +30,8 @@ class Rm:
 
         Rm.spri_wizard_boss = load_image('resource_image\\wiard_boss_phase1.png')
         Rm.spri_wizard_boss_attack_phase1 = load_image('resource_image\\attack_circle.png')
+        Rm.spri_wizard_boss_attack_fake = load_image('resource_image\\collide_attack.png')
+        Rm.spri_wizard_boss_last_paturn = load_image('resource_image\\last_paturn.png')
         Rm.spri_wizard_boss_immotral_ring = load_image('resource_image\\immortal.png')
 
 

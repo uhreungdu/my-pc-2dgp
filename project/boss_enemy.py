@@ -52,6 +52,7 @@ class Wizard:
         self.paturn = 0
         self.round = 100
         self.immortal = True
+        self.shoot = True
 
 
 
@@ -68,33 +69,37 @@ class Wizard:
             if self.y <= 490:
                 self.dir = 0
 
-        if (self.now_time - self.cur_time) >= 0 and (self.now_time - self.cur_time) <= 5:
+        if (self.now_time - self.cur_time)% 25 >= 0 and (self.now_time - self.cur_time)% 25 <= 5:
             self.immortal = True
+            self.shoot = True
             if (self.now_time - self.second_time) >= 0.25:
-                ball_up = Boss_wave(self.x, self.y + 100, -RUN_SPEED_PPS, 1, 1)
-                game_world.add_object(ball_up, 1)
-                ball_mid = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 1, 1)
-                game_world.add_object(ball_mid, 1)
-                ball_bottom = Boss_wave(self.x, self.y - 100, -RUN_SPEED_PPS, 1, 1)
-                game_world.add_object(ball_bottom, 1)
+                balls = [Boss_wave(self.x, self.y + 200 - (i * 100), -RUN_SPEED_PPS, 1, 1,random.randint(0,1)) for i in range(5)]
+                for ball in balls:
+                    game_world.add_object(ball,1)
                 self.second_time = get_time()
 
-        if (self.now_time - self.cur_time) >= 4 and (self.now_time - self.cur_time) <= 12:
+        if (self.now_time - self.cur_time)% 25 >= 4 and (self.now_time - self.cur_time)% 25 <= 12:
             self.immortal = False
 
-        if (self.now_time - self.cur_time) >= 10 and (self.now_time - self.cur_time) <= 15:
+        if (self.now_time - self.cur_time)% 25 >= 10 and (self.now_time - self.cur_time)% 25 <= 15:
             self.immortal = True
             if (self.now_time - self.second_time) >= 2:
                 ball = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 1,0)
                 game_world.add_object(ball, 1)
                 self.second_time = get_time()
 
-        if (self.now_time - self.cur_time) >= 14 and (self.now_time - self.cur_time) <= 22:
+        if (self.now_time - self.cur_time)% 25 >= 14 and (self.now_time - self.cur_time)% 25 <= 22:
             self.immortal = False
 
 
-        if (self.now_time - self.cur_time) >= 20 and (self.now_time - self.cur_time) <= 25:
+        if (self.now_time - self.cur_time)% 25 >= 20 and (self.now_time - self.cur_time)% 25 <= 25:
             self.immortal = True
+            if(self.now_time - self.second_time) >= 2:
+                if(self.shoot == True):
+                    ball = Boss_wave(self.x, self.y, -RUN_SPEED_PPS, 1, 2)
+                    game_world.add_object(ball, 1)
+                    self.shoot = False
+                    self.second_time = get_time()
 
     def draw_hp(self):
         self.hp_gauge.clip_draw(0, 0, 454, 26, 645 - int(720*((1000-self.hp)/2000)), 850,

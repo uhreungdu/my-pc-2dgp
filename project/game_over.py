@@ -6,13 +6,18 @@ import game_world
 name = "Game_Over"
 image = None
 Game_over_image = None
+over_sound = None
+
 
 def enter():
     global image
     global Game_over_image
+    global over_sound
     image = load_image('gameover_back_ground.png')
     Game_over_image = load_image('GAMEOVER Banner (doubleres).png')
-
+    over_sound = load_wav('sound_resource\\game_over.wav')
+    over_sound.set_volume(30)
+    sound_over()
 
 def exit():
     global image
@@ -42,7 +47,8 @@ def draw():
 
 
 
-
+def sound_over():
+    over_sound.play()
 
 
 def update():

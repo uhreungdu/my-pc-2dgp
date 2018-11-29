@@ -45,7 +45,8 @@ def exit():
     global title_font
     global title_frame
     global start_button
-
+    global bgm
+    bgm.stop()
     del(title_font)
     del(image)
     del(title_frame)

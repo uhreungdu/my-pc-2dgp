@@ -30,10 +30,10 @@ FRAMES_PER_ACTION = 8
 
 class Wheel:
     image = None
-    def __init__(self):
+    def __init__(self,y):
         if Wheel.image == None:
             Wheel.image = resource_manage.resouse.spri_Wheel_enemy
-        self.x, self.y = 1350, 500 + random.randint(-100, 100)
+        self.x, self.y = 1350, y
         self.velocity = 0
         self.frame = 0
         self.popup = 0

@@ -54,6 +54,9 @@ class Bullet:
         self.type = 0
         self.check = True
 
+        self.collide_sound = load_wav('sound_resource\\collide.wav')
+        self.collide_sound.set_volume(50)
+
 
 
     def draw(self):
@@ -64,6 +67,9 @@ class Bullet:
             resource_manage.resouse.spri_wheel_bullut.clip_draw(0,0,116,116,self.x,self.y,30,30)
             self.round = 15
             self.damage = 20
+
+    def crash_sound(self):
+        self.collide_sound.play()
 
     def update(self):
         self.cur_time = get_time()
@@ -79,7 +85,7 @@ class Bullet:
                 if boss_stage.wizard_boss.immortal == False:
                     boss_stage.wizard_boss.hp -= self.damage
                 game_world.remove_object(self)
-                print(boss_stage.wizard_boss.hp)
+                #print(boss_stage.wizard_boss.hp)
 
         if self.ID == 2:
             if self.paturn == 0:
@@ -118,8 +124,10 @@ class Bullet:
             self.length = math.sqrt(self.deltaX * self.deltaX + self.deltaY * self.deltaY)
 
             if( self.length < self.round + main_game.play.round):
-                game_world.remove_object(self)
+                self.crash_sound()
                 main_game.play.hp -= self.damage
+                game_world.remove_object(self)
+
 
 
         if self.x < 50 or self.x > 1280 - 50:

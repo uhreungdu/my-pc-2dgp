@@ -30,7 +30,7 @@ def enter():
     global wave_now_time
     global wheel_enemys
     play = player()
-    wheel_enemys = [Wheel() for i in range(5)]
+    wheel_enemys = [Wheel((i * 75) + 100) for i in range(10)]
     stage = Stage()
     game_world.add_object(play, 1)
     for wheel in wheel_enemys:
