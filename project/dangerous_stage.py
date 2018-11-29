@@ -1,5 +1,6 @@
 from pico2d import *
 from dangerous_line import Line
+from dangerous_line import cut_sence
 import game_framework
 import game_world
 import main_game
@@ -18,20 +19,23 @@ wave_time = 0
 wave_now_time = 0
 wheel_enemys = []
 dangerous_image = []
-
+cut_image = None
 def enter():
     global play
     global stage
     global wave_time
     global wave_now_time
     global dangerous_image
+    global cut_image
     play = main_game.play
     stage = main_game.stage
     game_world.add_object(play, 1)
     game_world.add_object(stage, 0)
     dangerous_image = [Line(i * 288) for i in range(5)]
+    cut_image = cut_sence()
     for line_image in dangerous_image:
         game_world.add_object(line_image,1)
+    game_world.add_object(cut_image,0)
     play.attack_mode = False
     wave_time = get_time()
     wave_now_time = get_time()

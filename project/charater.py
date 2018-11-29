@@ -70,9 +70,12 @@ class PlayState:
     @staticmethod
     def do(play):
         play.x += play.velocity_x * game_framework.frame_time
-        play.x = clamp(50, play.x, 1280 - 50)
+        play.x = clamp(50, play.x, 1280 - 500)
         play.y += play.velocity_y * game_framework.frame_time
-        play.y = clamp(50, play.y, 1024 - 200)
+        if play.lock_move == True:
+            play.y = clamp(200, play.y, 700)
+        if play.lock_move == False:
+            play.y = clamp(100, play.y, 800)
 
 
     @staticmethod
@@ -104,6 +107,7 @@ class player:
         self.cur_state = PlayState
         self.cur_state.enter(self, None)
         self.attack_mode = False
+        self.lock_move =True
 
     def add_event(self, event):
         self.event_que.insert(0, event)
