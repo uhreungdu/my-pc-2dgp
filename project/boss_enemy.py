@@ -30,9 +30,16 @@ FRAMES_PER_ACTION = 8
 
 class Wizard:
     image = None
+    hp_frame = None
+    hp_gauge = None
     def __init__(self):
         if Wizard.image == None:
             Wizard.image = resource_manage.resouse.spri_wizard_boss
+        if Wizard.hp_frame == None:
+            Wizard.hp_frame = load_image('8frame (doubleres).png')
+        if Wizard.hp_gauge == None:
+            Wizard.hp_gauge = load_image('Danger (stretch).png')
+
         self.x, self.y = 1100, 500
         self.hp = 1000
         self.frame = 0
@@ -45,6 +52,9 @@ class Wizard:
         self.paturn = 0
         self.round = 100
         self.immortal = True
+
+
+
 
 
     def update(self):
@@ -86,16 +96,18 @@ class Wizard:
         if (self.now_time - self.cur_time) >= 20 and (self.now_time - self.cur_time) <= 25:
             self.immortal = True
 
+    def draw_hp(self):
+        self.hp_gauge.clip_draw(0, 0, 454, 26, 645 - int(720*((1000-self.hp)/2000)), 850,
+                                720 * (self.hp/1000), 40)
+        #print(self.hp)
+        self.hp_frame.draw(1280/2, 850)
         pass
-
-
-
-
 
     def draw(self):
         resource_manage.resouse.spri_wizard_boss.clip_composite_draw(0, 0, 592, 702, 0, 'h', self.x, self.y, 208, 242)
         if self.immortal == True:
             resource_manage.resouse.spri_wizard_boss_immotral_ring.clip_draw(0,0, 654,639,self.x,self.y,240,272)
+        self.draw_hp()
 
 
 

@@ -11,11 +11,11 @@ play = None
 wizard_boss = None
 stage = None
 
-
 def enter():
     global play
     global wizard_boss
     global stage
+    global bgm
     play = main_game.play
     wizard_boss = Wizard()
     stage = Stage()

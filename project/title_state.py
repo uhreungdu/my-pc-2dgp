@@ -11,6 +11,7 @@ effect_left = None
 effect_right = None
 effect_frame = 0
 bgm = None
+start_gam = None
 
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
@@ -25,6 +26,7 @@ def enter():
     global effect_right
     global effect_frame
     global bgm
+    global start_gam
     image = load_image('resource_image\\title_state.png')
     title_font = load_font('Gilbert Bold-Preview_1004.otf', 200)
     title_frame = load_image('resource_image\\Info.png')
@@ -34,6 +36,8 @@ def enter():
     bgm = load_music('sound_resource\\back_ground.mp3')
     bgm.set_volume(64)
     bgm.repeat_play()
+    start_gam = load_wav('sound_resource\\start_game.wav')
+    start_gam.set_volume(50)
     effect_frame = 0
 
 def exit():
@@ -41,6 +45,7 @@ def exit():
     global title_font
     global title_frame
     global start_button
+
     del(title_font)
     del(image)
     del(title_frame)
@@ -55,6 +60,7 @@ def handle_events():
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
+                strating_game()
                 game_framework.push_state(main_game)
 
 
@@ -85,3 +91,6 @@ def pause():
 
 def resume():
     pass
+
+def strating_game():
+    start_gam.play()

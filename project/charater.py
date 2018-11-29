@@ -58,7 +58,7 @@ class PlayState:
             play.velocity_y += RUN_SPEED_PPS
         play.direction = clamp(-0.5, play.velocity_x, 0.5)
         play.direction = clamp(-0.5, play.velocity_y, 0.5)
-        print(game_framework.frame_time)
+        #print(game_framework.frame_time)
 
     @staticmethod
     def exit(play, event):
@@ -108,12 +108,15 @@ class player:
         self.cur_state.enter(self, None)
         self.attack_mode = False
         self.lock_move =True
+        self.shooting_sound = load_wav('sound_resource\\shooting.wav')
+        self.shooting_sound.set_volume(30)
 
     def add_event(self, event):
         self.event_que.insert(0, event)
 
     def fire_shoting(self):
         if self.attack_mode == True:
+            self.shooting_sound.play()
             ball = Bullet(self.x, self.y, 10, 1, 0)
             game_world.add_object(ball, 1)
 

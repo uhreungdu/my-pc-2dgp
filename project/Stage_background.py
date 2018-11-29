@@ -37,7 +37,7 @@ class Stage:
             Stage.gauge_font = load_font('netmarbleB.ttf', 45)
         if Stage.bgm == None:
             Stage.bgm = load_music('sound_resource\\[SDVX] Nostalgic Blood of the Strife [NOFX].mp3')
-            Stage.bgm.set_volume(50)
+            Stage.bgm.set_volume(0)
             Stage.bgm.repeat_play()
 
 
@@ -59,7 +59,7 @@ class Stage:
        self.move = main_game.wave_count
        self.like_scroll -= 1
        self.like_scrool_re -= 1
-       print(self.x - self.like_scroll)
+       #print(self.x - self.like_scroll)
        if (self.like_scroll == 850):
            self.like_scrool_re = 3850
        if(self.x -self.like_scroll >= 4400):
