@@ -3,7 +3,7 @@ from pico2d import *
 import title_state
 import game_world
 
-name = "Game_Over"
+name = "Clear_Game"
 image = None
 Game_over_image = None
 over_sound = None
@@ -14,7 +14,7 @@ def enter():
     global Game_over_image
     global over_sound
     image = load_image('gameover_back_ground.png')
-    Game_over_image = load_image('GAMEOVER Banner (doubleres).png')
+    Game_over_image = load_image('resource_image\\Info_Clear.png')
     over_sound = load_wav('sound_resource\\game_over.wav')
     over_sound.set_volume(30)
     sound_over()

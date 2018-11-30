@@ -5,6 +5,8 @@ from boss_enemy import Wizard
 import game_world
 import game_over
 import main_game
+
+import clear_game
 from wizard_boss_stage_background import Stage
 
 play = None
@@ -53,7 +55,8 @@ def update():
     if play.hp <= 0:
         game_world.remove_object(play)
         game_framework.change_state(game_over)
-
+    if wizard_boss.hp <= 0:
+        game_framework.change_state(clear_game)
 
 
 

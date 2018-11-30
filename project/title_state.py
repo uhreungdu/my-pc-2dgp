@@ -62,7 +62,7 @@ def handle_events():
                 game_framework.quit()
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 strating_game()
-                game_framework.push_state(main_game)
+                game_framework.change_state(main_game)
 
 
 def draw():

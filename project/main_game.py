@@ -44,7 +44,8 @@ def enter():
 
 def exit():
     global wave_count
-    Stage.bgm.stop()
+    global stage
+    stage.bgm.stop()
     game_world.clear()
     wave_count = 0
 
@@ -78,7 +79,7 @@ def update():
     wave_now_time = get_time()
 
     if(wave_now_time - wave_time) >= 9 and play.hp > 0:
-        wave_count += 10
+        wave_count += 2
         wave_time = get_time()
 
     if wave_count >= 9:

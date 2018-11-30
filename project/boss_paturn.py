@@ -160,7 +160,7 @@ class Boss_wave:
                 self.x += RUN_SPEED_PPS * game_framework.frame_time * 0.5
             if self.ID == 6:
                 self.x += RUN_SPEED_PPS * game_framework.frame_time * 0.5
-            if self.ID ==7:
+            if self.ID == 7:
                 self.y += RUN_SPEED_PPS * game_framework.frame_time * 0.5
                 self.x += RUN_SPEED_PPS * game_framework.frame_time * 0.5
 
