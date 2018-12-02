@@ -24,6 +24,7 @@ def enter():
     game_world.add_object(play, 1)
     game_world.add_object(wizard_boss,1)
     game_world.add_object(stage,0)
+    stage.bgm.repeat_play()
 
 def exit():
     global wave_count

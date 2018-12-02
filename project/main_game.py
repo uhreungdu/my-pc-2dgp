@@ -39,13 +39,14 @@ def enter():
     play.attack_mode = False
     wave_time = get_time()
     wave_now_time = get_time()
+    stage.bgm.repeat_play()
 
 
 
 def exit():
     global wave_count
     global stage
-    stage.bgm.stop()
+    stage.bgm.pause()
     game_world.clear()
     wave_count = 0
 

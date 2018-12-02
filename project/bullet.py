@@ -6,6 +6,7 @@ import math
 import main_game
 import boss_stage
 import random
+from effect_bomb import effect
 
 PIXEL_PER_METER = (10.0 / 0.3)
 RUN_SPEED_KMPH = 30
@@ -54,8 +55,7 @@ class Bullet:
         self.type = 0
         self.check = True
 
-        self.collide_sound = load_wav('sound_resource\\collide.wav')
-        self.collide_sound.set_volume(50)
+
 
 
 
@@ -68,8 +68,7 @@ class Bullet:
             self.round = 15
             self.damage = 20
 
-    def crash_sound(self):
-        self.collide_sound.play()
+
 
     def update(self):
         self.cur_time = get_time()
@@ -84,6 +83,8 @@ class Bullet:
             if (self.length < self.round + boss_stage.wizard_boss.round):
                 if boss_stage.wizard_boss.immortal == False:
                     boss_stage.wizard_boss.hp -= self.damage
+                bomb_effect = effect(self.x,self.y)
+                game_world.add_object(bomb_effect,1)
                 game_world.remove_object(self)
                 #print(boss_stage.wizard_boss.hp)
 
@@ -124,8 +125,9 @@ class Bullet:
             self.length = math.sqrt(self.deltaX * self.deltaX + self.deltaY * self.deltaY)
 
             if( self.length < self.round + main_game.play.round):
-                self.crash_sound()
                 main_game.play.hp -= self.damage
+                bomb_effect = effect(self.x, self.y)
+                game_world.add_object(bomb_effect, 1)
                 game_world.remove_object(self)
 
 

@@ -73,7 +73,7 @@ class PlayState:
         play.x = clamp(50, play.x, 1280 - 500)
         play.y += play.velocity_y * game_framework.frame_time
         if play.lock_move == True:
-            play.y = clamp(200, play.y, 800)
+            play.y = clamp(100, play.y, 800)
         if play.lock_move == False:
             play.y = clamp(100, play.y, 800)
 
@@ -129,7 +129,6 @@ class player:
     def draw(self):
         self.cur_state.draw(self)
         self.round = 2
-        #print(self.hp)
 
     def handle_event(self, event):
         if (event.type, event.key) in key_event_table:
