@@ -6,7 +6,7 @@ import math
 import main_game
 import boss_stage
 import random
-
+from effect_bomb import effect
 PIXEL_PER_METER = (10.0 / 0.3)
 RUN_SPEED_KMPH = 30
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
@@ -173,6 +173,8 @@ class Boss_wave:
 
             if (self.length < self.round + main_game.play.round):
                 # print('cr')
+                bomb_effect = effect(self.x, self.y)
+                game_world.add_object(bomb_effect, 1)
                 game_world.remove_object(self)
                 main_game.play.hp -= self.damage
 

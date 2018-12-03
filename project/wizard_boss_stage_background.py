@@ -39,8 +39,9 @@ class Stage:
     def draw(self):
         self.image.clip_draw(0,653,639,428,self.x,self.y,1280,1024)
         self.image.opacify(self.opa)
-        self.state_window.clip_draw(0, 0, 400, 92, 1280/2, 960, 1280,85)
+        self.state_window.clip_draw(0, 0, 400, 92, 1280/2, 940, 1280,175)
         self.font.draw(25, 970,'HP : %d' % main_game.play.hp,(255, 0, 0))
+        self.font.draw(500,970,'BOSS_HP',(255, 0, 255))
         self.font.draw(1000, 970, 'Damge : %d' % main_game.play.power, (0, 0, 255))
     def update(self):
        if self.op_bool == True:

@@ -32,7 +32,7 @@ class Stage:
         if Stage.gauge_bar == None:
             Stage.gauge_bar = load_image('8frame (doubleres).png')
         if Stage.gauge_fill == None:
-            Stage.gauge_fill = load_image('Danger (stretch).png')
+            Stage.gauge_fill = load_image('resource_image\\Full (stretch).png')
         if Stage.gauge_font == None:
             Stage.gauge_font = load_font('netmarbleB.ttf', 45)
         if Stage.bgm == None:
@@ -50,9 +50,9 @@ class Stage:
         self.font.draw(30, 920, 'Damge : %d' % main_game.play.power, (0, 0, 255))
         self.font.draw(500, 970, 'BossGauge', (255, 0, 255))
         if self.move <8:
-            self.gauge_fill.clip_draw(0, 0, 57 * self.move, 26, 452 + (self.move * 38), 920, 72 * self.move + 10, 40)
+            self.gauge_fill.clip_draw(0, 0, 57 * self.move, 24, 452 + (self.move * 38), 920, 72 * self.move + 10, 40)
         if self.move >= 8:
-            self.gauge_fill.clip_draw(0, 0, 454, 26, 755, 920, 720, 40)
+            self.gauge_fill.clip_draw(0, 0, 454, 24, 755, 920, 720, 40)
         self.gauge_bar.draw(750,920)
 
     def update(self):

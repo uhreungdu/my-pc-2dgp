@@ -102,10 +102,10 @@ class Wizard:
                     self.second_time = get_time()
 
     def draw_hp(self):
-        self.hp_gauge.clip_draw(0, 0, 454, 26, 645 - int(720*((1000-self.hp)/2000)), 850,
+        self.hp_gauge.clip_draw(0, 0, 454, 26, 645 - int(720*((1000-self.hp)/2000)), 900,
                                 720 * (self.hp/1000), 40)
         #print(self.hp)
-        self.hp_frame.draw(1280/2, 850)
+        self.hp_frame.draw(1280/2, 900)
         pass
 
     def draw(self):

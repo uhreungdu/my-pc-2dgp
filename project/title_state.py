@@ -1,6 +1,7 @@
 import game_framework
 from pico2d import *
 import main_game
+import how_to_play
 
 name = "TitleState"
 image = None
@@ -62,7 +63,7 @@ def handle_events():
                 game_framework.quit()
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 strating_game()
-                game_framework.change_state(main_game)
+                game_framework.change_state(how_to_play)
 
 
 def draw():

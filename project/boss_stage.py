@@ -7,6 +7,7 @@ import game_over
 import main_game
 
 import clear_game
+import enemy
 from wizard_boss_stage_background import Stage
 
 play = None

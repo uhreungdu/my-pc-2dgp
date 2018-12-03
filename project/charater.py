@@ -80,7 +80,7 @@ class PlayState:
 
     @staticmethod
     def draw(play):
-        play.character.clip_draw(0, 150, 60, 50, play.x, play.y,65,75)
+        play.character.clip_draw(0, 150, 60, 50, play.x, play.y,75,85)
         play.character.opacify(play.opacity)
 
 next_state_table = {
