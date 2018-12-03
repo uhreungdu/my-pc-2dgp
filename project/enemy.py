@@ -72,11 +72,11 @@ class Wheel:
             if self.x >= 1350:
                 self.x = 1320
                 self.popup = 0
-                if self.y <= 900 and self.y >= 0:
-                    self.y += random.randint(-200, -150)
-                if self.y >= 900:
+                if self.y <= 850 and self.y >= 50:
+                    self.y += random.randint(-200, 200)
+                if self.y >= 850:
                     self.y += random.randint(-400, -200)
-                if self.y <= 0:
+                if self.y <= 50:
                     self.y += random.randint(200, 400)
                 self.count = 0
                 self.velocity = 0
